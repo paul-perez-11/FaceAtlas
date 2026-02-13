@@ -1,5 +1,5 @@
 # FaceAtlas
-Final Project Group A-1 AM8 ITS121-1L
+## Final Project Group A-1 AM8 ITS121-1L
 
 Averion, Charisma Abbey P.
 Peduca, Sophia Rynelle Anne B. 
