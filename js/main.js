@@ -5,11 +5,11 @@
 // ========================================
 // Navigation Scroll Effect
 // ========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const navbar = document.getElementById('navbar');
-    
+
     if (navbar) {
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             if (window.scrollY > 100) {
                 navbar.classList.add('scrolled');
             } else {
@@ -94,23 +94,23 @@ const faceZoneData = {
 // ========================================
 // Face Map Interaction
 // ========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const faceZones = document.querySelectorAll('.face-zone');
     const infoPanel = document.getElementById('infoPanel');
-    
+
     if (faceZones.length && infoPanel) {
         faceZones.forEach(zone => {
-            zone.addEventListener('click', function() {
+            zone.addEventListener('click', function () {
                 // Remove active class from all zones
                 faceZones.forEach(z => z.classList.remove('active'));
-                
+
                 // Add active class to clicked zone
                 this.classList.add('active');
-                
+
                 // Get zone data
                 const zoneKey = this.getAttribute('data-zone');
                 const data = faceZoneData[zoneKey];
-                
+
                 if (data) {
                     updateInfoPanel(data, zoneKey);
                 }
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function updateInfoPanel(data, zoneKey) {
     const infoPanel = document.getElementById('infoPanel');
-    
+
     infoPanel.innerHTML = `
         <h3>${data.title}</h3>
         <p class="zone-title">Common Issues</p>
@@ -144,7 +144,7 @@ function updateInfoPanel(data, zoneKey) {
             </svg>
         </button>
     `;
-    
+
     // Animate panel update
     infoPanel.style.opacity = '0';
     infoPanel.style.transform = 'translateY(10px)';
@@ -161,14 +161,14 @@ function updateInfoPanel(data, zoneKey) {
 function openSuggestedProducts(zoneKey) {
     const data = faceZoneData[zoneKey];
     if (!data) return;
-    
+
     const overlay = document.getElementById('sidePanelOverlay');
     const panel = document.getElementById('sidePanel');
     const content = document.getElementById('sidePanelContent');
-    
+
     // Get suggested products
     const suggestedProducts = data.suggestedProducts.map(id => products.find(p => p.id === id)).filter(Boolean);
-    
+
     content.innerHTML = `
         <div class="side-panel-issue">
             <h4>Selected Area</h4>
@@ -190,7 +190,7 @@ function openSuggestedProducts(zoneKey) {
             `).join('')}
         </div>
     `;
-    
+
     overlay.classList.add('active');
     panel.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -199,7 +199,7 @@ function openSuggestedProducts(zoneKey) {
 function closeSidePanel() {
     const overlay = document.getElementById('sidePanelOverlay');
     const panel = document.getElementById('sidePanel');
-    
+
     overlay.classList.remove('active');
     panel.classList.remove('active');
     document.body.style.overflow = '';
@@ -344,21 +344,21 @@ const products = [
 // ========================================
 // Shop Page - Search & Filter
 // ========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('shopSearch');
     const productGrid = document.getElementById('shopProductsGrid');
-    
+
     if (searchInput && productGrid) {
-        searchInput.addEventListener('input', function() {
+        searchInput.addEventListener('input', function () {
             const query = this.value.toLowerCase();
             filterProducts(query);
         });
     }
-    
+
     // Filter checkboxes
     const filterCheckboxes = document.querySelectorAll('.filter-option input[type="checkbox"]');
     filterCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
+        checkbox.addEventListener('change', function () {
             filterProducts();
         });
     });
@@ -367,30 +367,30 @@ document.addEventListener('DOMContentLoaded', function() {
 function filterProducts(searchQuery = '') {
     const productGrid = document.getElementById('shopProductsGrid');
     if (!productGrid) return;
-    
+
     // Get selected categories
     const selectedCategories = Array.from(document.querySelectorAll('.filter-category:checked')).map(cb => cb.value);
     const selectedBrands = Array.from(document.querySelectorAll('.filter-brand:checked')).map(cb => cb.value);
-    
+
     // Get search query
     const searchInput = document.getElementById('shopSearch');
     if (searchInput && !searchQuery) {
         searchQuery = searchInput.value.toLowerCase();
     }
-    
+
     // Filter products
     let filtered = products.filter(product => {
-        const matchesSearch = !searchQuery || 
+        const matchesSearch = !searchQuery ||
             product.name.toLowerCase().includes(searchQuery) ||
             product.brand.toLowerCase().includes(searchQuery) ||
             product.category.toLowerCase().includes(searchQuery);
-        
+
         const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(product.category);
         const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(product.brand);
-        
+
         return matchesSearch && matchesCategory && matchesBrand;
     });
-    
+
     // Render products
     renderShopProducts(filtered);
 }
@@ -398,7 +398,7 @@ function filterProducts(searchQuery = '') {
 function renderShopProducts(productsToRender) {
     const productGrid = document.getElementById('shopProductsGrid');
     if (!productGrid) return;
-    
+
     if (productsToRender.length === 0) {
         productGrid.innerHTML = `
             <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
@@ -407,7 +407,7 @@ function renderShopProducts(productsToRender) {
         `;
         return;
     }
-    
+
     productGrid.innerHTML = productsToRender.map(product => `
         <div class="shop-product-card" onclick="openProductModal('${product.id}')">
             <img src="${product.image}" alt="${product.name}">
@@ -426,10 +426,10 @@ function renderShopProducts(productsToRender) {
 function openProductModal(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
-    
+
     const overlay = document.getElementById('productModalOverlay');
     const modalContent = document.getElementById('productModalContent');
-    
+
     modalContent.innerHTML = `
         <button class="close-modal" onclick="closeProductModal()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -454,18 +454,18 @@ function openProductModal(productId) {
                 <h4 style="margin-top: 1rem;">Best For</h4>
                 <p style="font-size: 14px; color: var(--fa-text-secondary);">${product.skinType}</p>
             </div>
-            <button class="btn-primary add-to-cart">
-                Add to Cart
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M6 6h15l-1.5 9h-12z"/>
-                    <circle cx="9" cy="20" r="1"/>
-                    <circle cx="18" cy="20" r="1"/>
-                    <path d="M6 6L5 3H2"/>
-                </svg>
-            </button>
+            <button class="btn-primary add-to-cart" onclick="addToCart('${product.id}')">
+    Add to Cart
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 6h15l-1.5 9h-12z"/>
+        <circle cx="9" cy="20" r="1"/>
+        <circle cx="18" cy="20" r="1"/>
+        <path d="M6 6L5 3H2"/>
+    </svg>
+</button>
         </div>
     `;
-    
+
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
@@ -477,20 +477,20 @@ function closeProductModal() {
 }
 
 // Close modal on overlay click
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const modalOverlay = document.getElementById('productModalOverlay');
     const sidePanelOverlay = document.getElementById('sidePanelOverlay');
-    
+
     if (modalOverlay) {
-        modalOverlay.addEventListener('click', function(e) {
+        modalOverlay.addEventListener('click', function (e) {
             if (e.target === this) {
                 closeProductModal();
             }
         });
     }
-    
+
     if (sidePanelOverlay) {
-        sidePanelOverlay.addEventListener('click', function(e) {
+        sidePanelOverlay.addEventListener('click', function (e) {
             if (e.target === this) {
                 closeSidePanel();
             }
@@ -499,7 +499,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Close on escape key
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
         closeProductModal();
         closeSidePanel();
@@ -513,12 +513,12 @@ function updateFilterCounts() {
     // Get all category checkboxes
     const categoryCheckboxes = document.querySelectorAll('.filter-category');
     const brandCheckboxes = document.querySelectorAll('.filter-brand');
-    
+
     // Calculate counts for categories
     categoryCheckboxes.forEach(checkbox => {
         const category = checkbox.value;
         const count = products.filter(p => p.category === category).length;
-        
+
         // Find the count span next to this checkbox
         const filterOption = checkbox.closest('.filter-option');
         const countSpan = filterOption.querySelector('.filter-count');
@@ -526,12 +526,12 @@ function updateFilterCounts() {
             countSpan.textContent = `(${count})`;
         }
     });
-    
+
     // Calculate counts for brands
     brandCheckboxes.forEach(checkbox => {
         const brand = checkbox.value;
         const count = products.filter(p => p.brand === brand).length;
-        
+
         const filterOption = checkbox.closest('.filter-option');
         const countSpan = filterOption.querySelector('.filter-count');
         if (countSpan) {
@@ -544,10 +544,201 @@ function updateFilterCounts() {
 // ========================================
 // Initialize Shop Page
 // ========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const shopGrid = document.getElementById('shopProductsGrid');
     if (shopGrid) {
         renderShopProducts(products);
         updateFilterCounts();
+    }
+});
+
+// ========================================
+// Shopping Cart
+// ========================================
+let cart = [];
+
+// Initialize cart from localStorage
+document.addEventListener('DOMContentLoaded', function () {
+    const savedCart = localStorage.getItem('faceAtlasCart');
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCartBadge();
+    }
+});
+
+function saveCart() {
+    localStorage.setItem('faceAtlasCart', JSON.stringify(cart));
+    updateCartBadge();
+    renderCart();
+}
+
+function updateCartBadge() {
+    const badge = document.getElementById('cartBadge');
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    badge.textContent = totalItems;
+
+    if (totalItems > 0) {
+        badge.classList.add('show');
+    } else {
+        badge.classList.remove('show');
+    }
+}
+
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    const existingItem = cart.find(item => item.id === productId);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            brand: product.brand,
+            price: product.price,
+            image: product.image,
+            quantity: 1
+        });
+    }
+
+    saveCart();
+
+    // Optional: Show feedback
+    const btn = document.querySelector('.add-to-cart');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = 'Added! ✓';
+    btn.style.background = '#4AA3C1';
+    setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+    }, 1500);
+}
+
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    saveCart();
+}
+
+function updateQuantity(productId, change) {
+    const item = cart.find(item => item.id === productId);
+    if (!item) return;
+
+    item.quantity += change;
+
+    if (item.quantity <= 0) {
+        removeFromCart(productId);
+    } else {
+        saveCart();
+    }
+}
+
+function openCart() {
+    const overlay = document.getElementById('cartOverlay');
+    const panel = document.getElementById('cartPanel');
+
+    renderCart();
+
+    overlay.classList.add('active');
+    panel.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+    const overlay = document.getElementById('cartOverlay');
+    const panel = document.getElementById('cartPanel');
+
+    overlay.classList.remove('active');
+    panel.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function renderCart() {
+    const content = document.getElementById('cartContent');
+    const footer = document.getElementById('cartFooter');
+
+    if (cart.length === 0) {
+        content.innerHTML = `
+            <div class="cart-empty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M6 6h15l-1.5 9h-12z"/>
+                    <circle cx="9" cy="20" r="1.5"/>
+                    <circle cx="18" cy="20" r="1.5"/>
+                    <path d="M6 6L5 3H2"/>
+                </svg>
+                <p>Your cart is empty</p>
+                <p style="font-size: 12px; margin-top: 0.5rem;">Add some products to get started!</p>
+            </div>
+        `;
+        footer.innerHTML = '';
+        return;
+    }
+
+    content.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <div class="cart-item-image">
+                <img src="${item.image}" alt="${item.name}">
+            </div>
+            <div class="cart-item-details">
+                <div class="cart-item-info">
+                    <h4>${item.name}</h4>
+                    <p>${item.brand}</p>
+                    <div class="cart-item-price">PHP ${(item.price * item.quantity).toFixed(2)}</div>
+                </div>
+                <div class="cart-item-actions">
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="updateQuantity('${item.id}', -1)" ${item.quantity <= 1 ? 'disabled' : ''}>-</button>
+                        <span>${item.quantity}</span>
+                        <button class="qty-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
+                    </div>
+                    <button class="delete-btn" onclick="removeFromCart('${item.id}')" title="Remove item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    footer.innerHTML = `
+        <div class="cart-subtotal">
+            <span>Subtotal (${totalItems} item${totalItems !== 1 ? 's' : ''})</span>
+            <strong>PHP ${subtotal.toFixed(2)}</strong>
+        </div>
+        <button class="checkout-btn" onclick="checkout()">
+            Checkout
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </button>
+    `;
+}
+
+function checkout() {
+    if (cart.length === 0) return;
+
+    // Simulate checkout
+    const btn = document.querySelector('.checkout-btn');
+    btn.innerHTML = 'Processing...';
+    btn.disabled = true;
+
+    setTimeout(() => {
+        alert(`Thank you for your order! Total: PHP ${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}`);
+        cart = [];
+        saveCart();
+        closeCart();
+    }, 1500);
+}
+
+// Close cart on escape key
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        closeCart();
     }
 });
