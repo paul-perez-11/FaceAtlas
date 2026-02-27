@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaceAtlas</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&family=Space+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="../index.html" class="logo">FaceAtlas</a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="shop.html" class="active">Shop</a>
+            <a href="about.html">About Us</a>
+        </div>
+        <div class="user-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+        </div>
+    </nav>
+
+    <!-- Shop Page -->
+    <main class="shop-page">
+        <div class="shop-header">
+            <h1>Shop Skincare</h1>
+            <div class="search-bar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="M21 21l-4.35-4.35"></path>
+                </svg>
+                <input type="text" id="shopSearch" placeholder="Search products, brands, categories...">
+            </div>
+        </div>
+
+        <div class="shop-layout">
+            <!-- Sidebar Filters -->
+            <aside class="sidebar">
+                <div class="filter-group">
+                    <h3>Types of Skincare</h3>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-category" value="Cleanser">
+                        <span>Cleanser</span>
+                        <span class="filter-count">(0)</span> <!-- Will be updated by JS -->
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-category" value="Toner">
+                        <span>Toner</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-category" value="Serum">
+                        <span>Serum</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-category" value="Moisturizer">
+                        <span>Moisturizer</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-category" value="Eye Care">
+                        <span>Eye Care</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-category" value="Sunscreen">
+                        <span>Sunscreen</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-category" value="Mask">
+                        <span>Mask</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-category" value="Exfoliator">
+                        <span>Exfoliator</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-category" value="Treatment">
+                        <span>Treatment</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-category" value="Lip Care">
+                        <span>Lip Care</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Brand</h3>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-brand" value="Pure Skin">
+                        <span>Pure Skin</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-brand" value="Derm Care">
+                        <span>Derm Care</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-brand" value="Sun Shield">
+                        <span>Sun Shield</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-brand" value="Glow Labs">
+                        <span>Glow Labs</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-brand" value="Aqua Beauty">
+                        <span>Aqua Beauty</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-brand" value="Aurora">
+                        <span>Aurora</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-brand" value="Ageless">
+                        <span>Ageless</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" class="filter-brand" value="Lip Care">
+                        <span>Lip Care</span>
+                        <span class="filter-count">(0)</span>
+                    </label>
+                </div>
+            </aside>
+
+            <!-- Products Grid -->
+            <div class="shop-products-grid" id="shopProductsGrid">
+                <!-- Products rendered by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Product Modal -->
+    <div class="modal-overlay" id="productModalOverlay">
+        <div class="product-modal" id="productModalContent">
+            <!-- Content populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="font-mono">FaceAtlas</span>
+                <p>Science-backed skincare, made simple. Find your routine, understand your skin.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="shop.html">Products</a></li>
+                    <li><a href="../index.html#face-map">Face Map</a></li>
+                    <li><a href="shop.html">Ingredients</a></li>
+                    <li><a href="shop.html">Routine</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Learn</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Guides</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#team-section">Meet the Team</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="social-icons">
+                <a href="#">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 7l-7 5 7 5V7z"></path>
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </a>
+            </div>
+            <p class="copyright">© 2026 FaceAtlas. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

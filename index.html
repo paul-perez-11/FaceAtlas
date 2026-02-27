@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaceAtlas</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&family=Space+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav id="navbar">
+        <a href="index.html" class="logo">FaceAtlas</a>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="pages/shop.html">Shop</a>
+            <a href="pages/about.html">About Us</a>
+        </div>
+        <div class="user-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-image">
+                <img src="img/hero_image.jpg" alt="Healthy skin">
+            </div>
+            <div class="hero-text">
+                <h1>SKIN IS<br>A SYSTEM.</h1>
+                <p>FaceAtlas helps you map your skin type, decode ingredients, and build a routine that actually fits.
+                    Explore our interactive face map to understand your skin better.</p>
+                <a href="#face-map" class="btn-primary">
+                    Explore Face Map
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="chips">
+            <span class="chip">SCIENCE-BACKED</span>
+            <span class="chip">SENSITIVE-SAFE</span>
+            <span class="chip">COMMUNITY-TESTED</span>
+        </div>
+        <p class="hero-caption">Browse 200+ ingredients and 120+ products.</p>
+    </section>
+
+    <!-- Face Map Section -->
+    <section class="face-map-section" id="face-map">
+        <div class="section-header">
+            <h2>Interactive Face Map</h2>
+            <p>Click on different areas of the face to learn about common skin concerns and issues prone in each zone.
+            </p>
+        </div>
+
+        <div class="face-map-container">
+            <div class="face-image-wrapper">
+                <img src="img/face_map.jpg" alt="Face map for skin analysis" id="faceImage">
+
+                <!-- SVG Overlay with clickable zones -->
+                <svg class="face-zones-svg" viewBox="0 0 400 533" preserveAspectRatio="xMidYMid meet">
+                    <!-- Forehead Zone -->
+                    <path class="face-zone" data-zone="forehead"
+                        d="M 110 70 Q 200 35 290 70 Q 300 110 290 145 Q 200 135 110 145 Q 100 110 110 70 Z"
+                        title="Forehead">
+                    </path>
+
+                    <!-- Nose/T-Zone -->
+                    <path class="face-zone" data-zone="nose"
+                        d="M 180 155 Q 200 150 220 155 Q 225 200 220 245 Q 200 255 180 245 Q 175 200 180 155 Z"
+                        title="Nose (T-Zone)">
+                    </path>
+
+                    <!-- Left Cheek -->
+                    <path class="face-zone" data-zone="left-cheek"
+                        d="M 70 175 Q 120 165 165 185 Q 170 240 155 295 Q 100 305 60 285 Q 50 230 70 175 Z"
+                        title="Left Cheek">
+                    </path>
+
+                    <!-- Right Cheek -->
+                    <path class="face-zone" data-zone="right-cheek"
+                        d="M 235 185 Q 280 165 330 175 Q 350 230 340 285 Q 300 305 245 295 Q 230 240 235 185 Z"
+                        title="Right Cheek">
+                    </path>
+
+                    <!-- Under Eyes -->
+                    <ellipse class="face-zone" data-zone="under-eyes" cx="145" cy="170" rx="40" ry="22"
+                        title="Under Eyes">
+                    </ellipse>
+                    <ellipse class="face-zone" data-zone="under-eyes" cx="255" cy="170" rx="40" ry="22"
+                        title="Under Eyes">
+                    </ellipse>
+
+                    <!-- Chin/Jawline -->
+                    <path class="face-zone" data-zone="chin"
+                        d="M 130 315 Q 200 305 270 315 Q 280 360 260 405 Q 200 435 140 405 Q 120 360 130 315 Z"
+                        title="Chin & Jawline">
+                    </path>
+                </svg>
+            </div>
+
+            <div class="info-panel" id="infoPanel">
+                <div class="default-message">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 6v6l4 2" />
+                    </svg>
+                    <h3>Click on a facial area</h3>
+                    <p>Select any zone on the face to see common skin issues and care tips for that area.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curated Products Section -->
+    <section class="products-section">
+        <div class="section-header">
+            <h2>Curated Products That Fit You</h2>
+            <p>Handpicked skincare essentials for every skin concern.</p>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card" onclick="openProductModal('cleanser')">
+                <img src="img/product_cleanser.jpg" alt="Gentle Cleanser">
+                <div class="product-info">
+                    <span class="product-tag">Cleanser</span>
+                    <h4>Gentle Foam Cleanser</h4>
+                    <p>Removes makeup without stripping.</p>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="openProductModal('moisturizer')">
+                <img src="img/product_moisturizer.jpg" alt="Moisturizer">
+                <div class="product-info">
+                    <span class="product-tag">Moisturizer</span>
+                    <h4>Barrier Repair Cream</h4>
+                    <p>Rich, non-greasy recovery.</p>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="openProductModal('sunscreen')">
+                <img src="img/product_sunscreen.jpg" alt="Sunscreen">
+                <div class="product-info">
+                    <span class="product-tag">Sunscreen</span>
+                    <h4>Daily UV Fluid SPF 50</h4>
+                    <p>No white cast, breathable finish.</p>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="openProductModal('serum')">
+                <img src="img/product_serum.jpg" alt="Serum">
+                <div class="product-info">
+                    <span class="product-tag">Serum</span>
+                    <h4>Vitamin C Serum</h4>
+                    <p>Brightens and evens skin tone.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="pages/shop.html" class="btn-outline">
+                View All Products
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Side Panel (Suggested Products) -->
+    <div class="side-panel-overlay" id="sidePanelOverlay" onclick="closeSidePanel()"></div>
+    <div class="side-panel" id="sidePanel">
+        <div class="side-panel-header">
+            <h3>Suggested Products</h3>
+            <button class="close-panel" onclick="closeSidePanel()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="side-panel-content" id="sidePanelContent">
+            <!-- Content populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal-overlay" id="productModalOverlay">
+        <div class="product-modal" id="productModalContent">
+            <!-- Content populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="font-mono">FaceAtlas</span>
+                <p>Science-backed skincare, made simple. Find your routine, understand your skin.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="shop.html">Products</a></li>
+                    <li><a href="../index.html#face-map">Face Map</a></li>
+                    <li><a href="shop.html">Ingredients</a></li>
+                    <li><a href="shop.html">Routine</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Learn</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Guides</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#team-section">Meet the Team</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="social-icons">
+                <a href="#">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 7l-7 5 7 5V7z"></path>
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </a>
+            </div>
+            <p class="copyright">© 2026 FaceAtlas. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
