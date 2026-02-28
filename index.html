@@ -58,54 +58,48 @@
     <section class="face-map-section" id="face-map">
         <div class="section-header">
             <h2>Interactive Face Map</h2>
-            <p>Click on different areas of the face to learn about common skin concerns and issues prone in each zone.
-            </p>
+            <p>Click on different areas of the face to learn about common skin concerns and issues prone in each zone.</p>
         </div>
 
         <div class="face-map-container">
-            <div class="face-image-wrapper">
-                <img src="img/face_map.jpg" alt="Face map for skin analysis" id="faceImage">
+            <div class="face-map-wrapper">
+                <div class="face-image-container">
+                    <img src="img/face_map.jpg" alt="Face map for skin analysis" id="faceImage">
+                    
+                    <!-- SVG Overlay - viewBox matches original image dimensions -->
+                    <svg class="face-zones-svg" viewBox="0 0 864 1184" preserveAspectRatio="xMidYMid slice">
+                        <!-- Forehead Zone -->
+                        <path class="face-zone" data-zone="forehead"
+                            d="M 280 130 Q 432 100 584 130 Q 620 180 584 220 Q 432 210 280 220 Q 244 180 280 130 Z">
+                        </path>
 
-                <!-- SVG Overlay with clickable zones -->
-                <svg class="face-zones-svg" viewBox="0 0 400 533" preserveAspectRatio="xMidYMid meet">
-                    <!-- Forehead Zone -->
-                    <path class="face-zone" data-zone="forehead"
-                        d="M 110 70 Q 200 35 290 70 Q 300 110 290 145 Q 200 135 110 145 Q 100 110 110 70 Z"
-                        title="Forehead">
-                    </path>
+                        <!-- Left Under Eye -->
+                        <ellipse class="face-zone" data-zone="under-eyes" cx="330" cy="330" rx="75" ry="30"></ellipse>
+                        
+                        <!-- Right Under Eye -->
+                        <ellipse class="face-zone" data-zone="under-eyes" cx="534" cy="330" rx="75" ry="30"></ellipse>
 
-                    <!-- Nose/T-Zone -->
-                    <path class="face-zone" data-zone="nose"
-                        d="M 180 155 Q 200 150 220 155 Q 225 200 220 245 Q 200 255 180 245 Q 175 200 180 155 Z"
-                        title="Nose (T-Zone)">
-                    </path>
+                        <!-- Nose/T-Zone -->
+                        <path class="face-zone" data-zone="nose"
+                            d="M 400 250 Q 432 240 464 250 Q 475 320 485 390 Q 475 460 432 480 Q 389 460 379 390 Q 389 320 400 250 Z">
+                        </path>
 
-                    <!-- Left Cheek -->
-                    <path class="face-zone" data-zone="left-cheek"
-                        d="M 70 175 Q 120 165 165 185 Q 170 240 155 295 Q 100 305 60 285 Q 50 230 70 175 Z"
-                        title="Left Cheek">
-                    </path>
+                        <!-- Left Cheek -->
+                        <path class="face-zone" data-zone="left-cheek"
+                            d="M 200 300 Q 280 280 340 320 Q 360 400 350 480 Q 280 520 180 480 Q 140 400 160 340 Q 180 310 200 300 Z">
+                        </path>
 
-                    <!-- Right Cheek -->
-                    <path class="face-zone" data-zone="right-cheek"
-                        d="M 235 185 Q 280 165 330 175 Q 350 230 340 285 Q 300 305 245 295 Q 230 240 235 185 Z"
-                        title="Right Cheek">
-                    </path>
+                        <!-- Right Cheek -->
+                        <path class="face-zone" data-zone="right-cheek"
+                            d="M 664 300 Q 584 280 524 320 Q 504 400 514 480 Q 584 520 684 480 Q 724 400 704 340 Q 684 310 664 300 Z">
+                        </path>
 
-                    <!-- Under Eyes -->
-                    <ellipse class="face-zone" data-zone="under-eyes" cx="145" cy="170" rx="40" ry="22"
-                        title="Under Eyes">
-                    </ellipse>
-                    <ellipse class="face-zone" data-zone="under-eyes" cx="255" cy="170" rx="40" ry="22"
-                        title="Under Eyes">
-                    </ellipse>
-
-                    <!-- Chin/Jawline -->
-                    <path class="face-zone" data-zone="chin"
-                        d="M 130 315 Q 200 305 270 315 Q 280 360 260 405 Q 200 435 140 405 Q 120 360 130 315 Z"
-                        title="Chin & Jawline">
-                    </path>
-                </svg>
+                        <!-- Chin/Jawline -->
+                        <path class="face-zone" data-zone="chin"
+                            d="M 350 520 Q 432 500 514 520 Q 580 580 600 680 Q 560 780 432 820 Q 304 780 264 680 Q 284 580 350 520 Z">
+                        </path>
+                    </svg>
+                </div>
             </div>
 
             <div class="info-panel" id="infoPanel">
@@ -173,6 +167,83 @@
                     <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
             </a>
+        </div>
+    </section>
+
+        <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+                <p>Have questions about your skin or need personalized advice? We're here to help you build your perfect routine.</p>
+                
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="label">Email Us</span>
+                            <a href="mailto:hello@faceatlas.com">hello@faceatlas.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="label">Call Us</span>
+                            <a href="tel:+1234567890">+1 (234) 567-890</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form-wrapper">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="" disabled selected>Select a topic</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="products">Product Questions</option>
+                            <option value="skin">Skin Consultation</option>
+                            <option value="order">Order Support</option>
+                            <option value="partnership">Partnership</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell us about your skin concerns or questions..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary submit-btn">
+                        Send Message
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 

@@ -205,141 +205,27 @@ function closeSidePanel() {
     document.body.style.overflow = '';
 }
 
-// ========================================
-// Products Data
-// ========================================
-const products = [
-    {
-        id: 'cleanser',
-        name: 'Gentle Foam Cleanser',
-        brand: 'Pure Skin',
-        category: 'Cleanser',
-        price: 24.00,
-        image: '../img/product_cleanser.jpg',
-        shortDesc: 'Removes makeup without stripping.',
-        fullDesc: 'A luxurious foaming cleanser that gently removes makeup, dirt, and impurities without stripping your skin of its natural moisture. Formulated with hyaluronic acid and ceramides to maintain your skin barrier.',
-        benefits: ['Gentle on sensitive skin', 'Non-stripping formula', 'pH balanced', 'Fragrance-free'],
-        ingredients: 'Water, Glycerin, Hyaluronic Acid, Ceramides, Panthenol',
-        skinType: 'All skin types'
-    },
-    {
-        id: 'moisturizer',
-        name: 'Barrier Repair Cream',
-        brand: 'Derm Care',
-        category: 'Moisturizer',
-        price: 38.00,
-        image: '../img/product_moisturizer.jpg',
-        shortDesc: 'Rich, non-greasy recovery.',
-        fullDesc: 'An intensive barrier repair cream that strengthens your skin\'s natural defense system. Rich yet non-greasy, it provides deep hydration while repairing damaged skin barriers.',
-        benefits: ['Repairs skin barrier', 'Deep hydration', 'Non-comedogenic', 'Dermatologist tested'],
-        ingredients: 'Ceramides, Niacinamide, Squalane, Peptides, Vitamin E',
-        skinType: 'Dry, sensitive, compromised skin'
-    },
-    {
-        id: 'sunscreen',
-        name: 'Daily UV Fluid SPF 50',
-        brand: 'Sun Shield',
-        category: 'Sunscreen',
-        price: 32.00,
-        image: '../img/product_sunscreen.jpg',
-        shortDesc: 'No white cast, breathable finish.',
-        fullDesc: 'A lightweight, invisible sunscreen that provides broad-spectrum SPF 50 protection without the white cast. Its fluid texture absorbs quickly and works beautifully under makeup.',
-        benefits: ['Invisible finish', 'Broad spectrum SPF 50', 'Works under makeup', 'Non-greasy'],
-        ingredients: 'Zinc Oxide, Titanium Dioxide, Hyaluronic Acid, Vitamin E',
-        skinType: 'All skin types'
-    },
-    {
-        id: 'serum',
-        name: 'Vitamin C Brightening Serum',
-        brand: 'Glow Labs',
-        category: 'Serum',
-        price: 45.00,
-        image: '../img/product_serum.jpg',
-        shortDesc: 'Brightens and evens skin tone.',
-        fullDesc: 'A potent 15% Vitamin C serum that brightens dark spots, evens skin tone, and provides antioxidant protection. Formulated with ferulic acid for enhanced stability and efficacy.',
-        benefits: ['Brightens dark spots', 'Antioxidant protection', 'Boosts collagen', 'Improves texture'],
-        ingredients: '15% L-Ascorbic Acid, Ferulic Acid, Vitamin E, Hyaluronic Acid',
-        skinType: 'All skin types except very sensitive'
-    },
-    {
-        id: 'toner',
-        name: 'Hydrating Essence Toner',
-        brand: 'Aqua Beauty',
-        category: 'Toner',
-        price: 28.00,
-        image: '../img/product_toner.jpg',
-        shortDesc: 'Preps skin for better absorption.',
-        fullDesc: 'A hydrating essence toner that preps your skin for better absorption of subsequent products. Contains multiple weights of hyaluronic acid for multi-layer hydration.',
-        benefits: ['Deep hydration', 'Preps skin', 'pH balancing', 'Alcohol-free'],
-        ingredients: 'Hyaluronic Acid, Panthenol, Allantoin, Centella Asiatica',
-        skinType: 'All skin types'
-    },
-    {
-        id: 'eyecream',
-        name: 'Anti-Aging Eye Cream',
-        brand: 'Aurora',
-        category: 'Eye Care',
-        price: 42.00,
-        image: '../img/product_eyecream.jpg',
-        shortDesc: 'Reduces fine lines and puffiness.',
-        fullDesc: 'A nourishing eye cream that targets fine lines, dark circles, and puffiness. Formulated with peptides and caffeine to rejuvenate the delicate eye area.',
-        benefits: ['Reduces fine lines', 'Minimizes puffiness', 'Brightens dark circles', 'Gentle formula'],
-        ingredients: 'Peptides, Caffeine, Retinol, Hyaluronic Acid, Niacinamide',
-        skinType: 'All skin types'
-    },
-    {
-        id: 'scrub',
-        name: 'Gentle Face Scrub',
-        brand: 'Pure Skin',
-        category: 'Exfoliator',
-        price: 22.00,
-        image: '../img/product_scrub.jpg',
-        shortDesc: 'Exfoliates without irritation.',
-        fullDesc: 'A gentle physical exfoliator with ultra-fine jojoba beads that remove dead skin cells without causing micro-tears. Leaves skin smooth and radiant.',
-        benefits: ['Gentle exfoliation', 'Unclogs pores', 'Smooths texture', 'Suitable for weekly use'],
-        ingredients: 'Jojoba Beads, Glycerin, Aloe Vera, Chamomile Extract',
-        skinType: 'All skin types except active acne'
-    },
-    {
-        id: 'mask',
-        name: 'Clay Detox Mask',
-        brand: 'Pure Skin',
-        category: 'Mask',
-        price: 30.00,
-        image: '../img/product_mask.jpg',
-        shortDesc: 'Purifies and balances skin.',
-        fullDesc: 'A purifying clay mask that draws out impurities, absorbs excess oil, and minimizes the appearance of pores. Contains kaolin and bentonite clay for deep cleansing.',
-        benefits: ['Deep cleanses', 'Absorbs excess oil', 'Minimizes pores', 'Detoxifies skin'],
-        ingredients: 'Kaolin Clay, Bentonite Clay, Tea Tree Oil, Witch Hazel',
-        skinType: 'Oily, combination, acne-prone'
-    },
-    {
-        id: 'retinol',
-        name: 'Retinol Night Cream',
-        brand: 'Ageless',
-        category: 'Treatment',
-        price: 52.00,
-        image: '../img/product_retinol.jpg',
-        shortDesc: 'Anti-aging night treatment.',
-        fullDesc: 'A powerful 0.5% retinol cream that reduces fine lines, wrinkles, and uneven skin tone. Encapsulated retinol ensures slow release for minimal irritation.',
-        benefits: ['Reduces wrinkles', 'Improves texture', 'Evens skin tone', 'Boosts cell turnover'],
-        ingredients: '0.5% Encapsulated Retinol, Squalane, Niacinamide, Ceramides',
-        skinType: 'Normal, oily, combination'
-    },
-    {
-        id: 'lipbalm',
-        name: 'Nourishing Lip Balm',
-        brand: 'Lip Care',
-        category: 'Lip Care',
-        price: 12.00,
-        image: '../img/product_lipbalm.jpg',
-        shortDesc: 'Hydrates and protects lips.',
-        fullDesc: 'A deeply nourishing lip balm that hydrates, repairs, and protects dry, chapped lips. Contains shea butter, beeswax, and vitamin E for long-lasting moisture.',
-        benefits: ['Deep hydration', 'Repairs chapped lips', 'SPF 15 protection', 'Long-lasting'],
-        ingredients: 'Shea Butter, Beeswax, Vitamin E, Coconut Oil, SPF 15',
-        skinType: 'All skin types'
+let products = [];
+
+// Load products from JSON
+async function loadProducts() {
+    try {
+        const response = await fetch('../data/products.json');
+        products = await response.json();
+        
+        // Initialize shop page if on shop page
+        const shopGrid = document.getElementById('shopProductsGrid');
+        if (shopGrid) {
+            renderShopProducts(products);
+            updateFilterCounts();
+        }
+    } catch (error) {
+        console.error('Error loading products:', error);
     }
-];
+}
+
+// Call on page load
+document.addEventListener('DOMContentLoaded', loadProducts);
 
 // ========================================
 // Shop Page - Search & Filter
@@ -539,7 +425,47 @@ function updateFilterCounts() {
         }
     });
 }
+// ========================================
+// Contact Form
+// ========================================
 
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            // Simulate form submission
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Show success message
+                contactForm.innerHTML = `
+                    <div class="success-message">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <h3>Message Sent!</h3>
+                        <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
+                    </div>
+                `;
+                
+                contactForm.classList.add('success');
+            }, 1500);
+        });
+    }
+});
 
 // ========================================
 // Initialize Shop Page
