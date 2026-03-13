@@ -276,7 +276,7 @@ function openProductModalHome(productId, imageSrc) {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
             </button>
             <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-4">
-                <img src="${imageSrc}" alt="${product.name}" class="img-fluid rounded-4 shadow-sm" style="max-width: 300px;">
+                <img src="img/${imageSrc}" alt="${product.name}" class="img-fluid rounded-4 shadow-sm" style="max-width: 300px;">
             </div>
             <div class="col-md-7 p-4 p-md-5">
                 <p class="font-mono small text-uppercase text-secondary mb-2">${product.brand}</p>
