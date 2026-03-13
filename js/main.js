@@ -258,8 +258,8 @@ function openProductModal(productId) {
             <button class="btn btn-light position-absolute rounded-circle p-0 d-flex align-items-center justify-content-center shadow" onclick="closeProductModal()" style="top: 24px; right: 24px; width: 44px; height: 44px; z-index: 10;">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
             </button>
-            <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-4">
-                <img src="${resolveImagePath(product.image)}" alt="${product.name}" class="img-fluid rounded-4 shadow-sm" style="max-width: 300px;">
+            <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-4 p-md-5">
+                <img src="${resolveImagePath(product.image)}" alt="${product.name}" class="img-fluid rounded-4 shadow-sm" style="width: 100%; max-width: 450px; aspect-ratio: 1; object-fit: cover;">
             </div>
             <div class="col-md-7 p-4 p-md-5">
                 <p class="font-mono small text-uppercase text-secondary mb-2">${product.brand}</p>
@@ -467,3 +467,131 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = 'Sending...';
+            submitBtn.disabled = true;
+            setTimeout(() => {
+                contactForm.innerHTML = `
+                    <div class="text-center py-5">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:64px;height:64px;color:var(--fa-accent);margin-bottom:1rem;">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <h4>Message Sent!</h4>
+                        <p class="text-secondary small">Thank you for reaching out. We'll get back to you within 24 hours.</p>
+                    </div>
+                `;
+            }, 1000);
+        });
+    }
+});
+
+//
+document.addEventListener('DOMContentLoaded', function () {
+    const img = document.getElementById('faceImage');
+    const map = document.querySelector('map[name="image-map"]');
+    const faceAreas = document.querySelectorAll('area[data-zone]');
+
+    // 1. Handle the Click Events & Panel Updates
+    if (faceAreas.length) {
+        faceAreas.forEach(area => {
+            area.addEventListener('click', function (e) {
+                e.preventDefault(); 
+                const zoneKey = this.getAttribute('data-zone');
+                if (faceZoneData[zoneKey]) {
+                    updateInfoPanel(faceZoneData[zoneKey], zoneKey);
+                }
+            });
+        });
+    }
+
+    // 2. Responsive Image Map Logic
+    function resizeImageMap() {
+        if (!img || !map || !img.complete) return;
+
+        // Calculate exact scale ratios based on rendered size vs intrinsic size
+        const rect = img.getBoundingClientRect();
+        const ratioX = rect.width / img.naturalWidth;
+        const ratioY = rect.height / img.naturalHeight;
+
+        faceAreas.forEach(area => {
+            // Save original coordinates to prevent degradation on repeated resizing
+            if (!area.dataset.originalCoords) {
+                area.dataset.originalCoords = area.getAttribute('coords');
+            }
+
+            const originalCoords = area.dataset.originalCoords.split(',').map(Number);
+            let scaledCoords = [];
+
+            if (area.getAttribute('shape') === 'circle') {
+                // Circles: scale X, scale Y, and scale Radius (average of X/Y ratios)
+                scaledCoords[0] = Math.round(originalCoords[0] * ratioX);
+                scaledCoords[1] = Math.round(originalCoords[1] * ratioY);
+                scaledCoords[2] = Math.round(originalCoords[2] * ((ratioX + ratioY) / 2));
+            } else {
+                // Polygons and Rectangles: alternating X and Y coordinates
+                for (let i = 0; i < originalCoords.length; i++) {
+                    scaledCoords.push(Math.round(originalCoords[i] * (i % 2 === 0 ? ratioX : ratioY)));
+                }
+            }
+
+            area.setAttribute('coords', scaledCoords.join(','));
+        });
+    }
+
+    // 3. Attach Resize Listeners
+    if (img) {
+        window.addEventListener('resize', resizeImageMap);
+        img.addEventListener('load', resizeImageMap);
+        // Force an initial resize in case image is already cached
+        if (img.complete) resizeImageMap(); 
+    }
+});
+
+function updateInfoPanel(data, zoneKey) {
+    const defaultMessage = document.getElementById('defaultMessage');
+    const dynamicContent = document.getElementById('dynamicContent');
+    
+    if (!defaultMessage || !dynamicContent) return;
+
+    // Hide default state, show dynamic state
+    defaultMessage.classList.add('d-none');
+    dynamicContent.classList.remove('d-none');
+
+    // Inject data into the dynamic container
+    dynamicContent.innerHTML = `
+        <h3 class="fs-4 text-uppercase mb-3">${data.title}</h3>
+        <p class="fw-bold text-uppercase mb-2 small">Common Issues</p>
+        <ul class="list-unstyled mb-4">
+            ${data.issues.map(issue => `
+                <li class="d-flex align-items-center gap-2 mb-2 pb-2 border-bottom">
+                    <span class="d-flex align-items-center justify-content-center bg-danger text-white rounded-circle flex-shrink-0" style="width: 28px; height: 28px; font-size: 12px;">${issue.icon}</span>
+                    <span class="small">${issue.name}</span>
+                </li>
+            `).join('')}
+        </ul>
+        <div class="bg-light p-3 rounded-4 mb-4">
+            <h4 class="font-mono small text-uppercase mb-2 text-secondary" style="font-size: 11px;">Care Tips</h4>
+            <p class="small mb-0">${data.tips}</p>
+        </div>
+        <button class="btn btn-primary w-100 rounded-pill py-3" onclick="openSuggestedProducts('${zoneKey}')">
+            See Suggested Products
+        </button>
+    `;
+
+    // Reset animation
+    dynamicContent.style.opacity = '0';
+    dynamicContent.style.transform = 'translateY(10px)';
+    
+    // Trigger fade-in
+    setTimeout(() => {
+        dynamicContent.style.transition = 'all 0.3s ease-in-out';
+        dynamicContent.style.opacity = '1';
+        dynamicContent.style.transform = 'translateY(0)';
+    }, 50);
+}
