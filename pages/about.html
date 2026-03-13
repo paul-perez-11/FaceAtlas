@@ -1,169 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FaceAtlas</title>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&family=Space+Mono:wght@400&display=swap"
-        rel="stylesheet">
+    <meta name="description" content="About FaceAtlas: We make skincare simple, science-backed, and accessible to everyone through personalized guidance and our interactive face map.">
+    <title>FaceAtlas - About</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
-
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <a href="../index.html" class="logo">FaceAtlas</a>
-        <div class="nav-links">
-            <a href="../index.html">Home</a>
-            <a href="shop.html">Shop</a>
-            <a href="about.html" class="active">About Us</a>
-        </div>
-        <div class="user-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-            </svg>
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top px-4 py-3">
+        <div class="container-fluid position-relative">
+            <a href="../index.html" class="navbar-brand logo mb-0" style="letter-spacing: 2px;">FACEATLAS</a>
+            
+            <div class="d-flex align-items-center gap-2 order-lg-3 ms-auto">
+                <button class="cart-icon-btn position-relative bg-transparent border-0 d-flex align-items-center justify-content-center" id="cartIconBtn" onclick="openCart()" style="width: 44px; height: 44px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z" /><circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" /><path d="M6 6L5 3H2" /></svg>
+                    <span class="cart-badge position-absolute bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" id="cartBadge" style="top:0px; right:0px; width:20px; height:20px; font-size:11px;">0</span>
+                </button>
+                <button class="navbar-toggler border-0 shadow-none px-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="hamburger-svg">
+                        <line x1="3" y1="6" x2="21" y2="6" class="top-line"></line>
+                        <line x1="3" y1="12" x2="21" y2="12" class="middle-line"></line>
+                        <line x1="3" y1="18" x2="21" y2="18" class="bottom-line"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse center-nav-lg order-lg-2" id="mainNav">
+                <div class="nav-links d-flex flex-column flex-lg-row align-items-center gap-4 gap-lg-0 mt-3 mt-lg-0 bg-light bg-lg-transparent p-4 p-lg-0 rounded-4 shadow-sm shadow-lg-none">
+                    <a href="../index.html" class="text-decoration-none text-secondary mx-3">HOME</a>
+                    <a href="shop.html" class="text-decoration-none text-secondary mx-3">SHOP</a>
+                    <a href="about.html" class="active text-decoration-none fw-bold text-dark mx-3">ABOUT US</a>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <!-- About Page -->
-    <main class="about-page">
-        <div class="about-hero">
-            <h1>About FaceAtlas</h1>
-            <p>We're on a mission to make skincare simple, science-backed, and accessible to everyone. No more guessing
-                games—just clear, personalized guidance for your unique skin.</p>
-        </div>
+    <main class="about-page pt-5 mt-5">
+        <div class="container">
+            <header class="about-hero mx-auto text-center" style="max-width: 800px; margin-bottom: 4rem;">
+                <h1 class="display-4 fw-bold text-uppercase mb-4">About FaceAtlas</h1>
+                <p class="lead text-secondary">We're on a mission to make skincare simple, science-backed, and accessible to everyone. No more guessing games—just clear, personalized guidance for your unique skin.</p>
+            </header>
 
-        <div class="about-grid">
-            <div class="about-card">
-                <div class="about-card-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    </svg>
+            <section class="row g-4 mb-5 pb-5">
+                <div class="col-md-4">
+                    <article class="card h-100 border-0 shadow-sm rounded-4 text-center p-4">
+                        <div class="about-card-icon mx-auto mb-4">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <h3 class="fs-5 fw-bold">Science-Backed</h3>
+                        <p class="text-secondary small">Every product and recommendation is based on dermatological research and proven ingredients.</p>
+                    </article>
                 </div>
-                <h3>Science-Backed</h3>
-                <p>Every product and recommendation is based on dermatological research and proven ingredients.</p>
-            </div>
+                <div class="col-md-4">
+                    <article class="card h-100 border-0 shadow-sm rounded-4 text-center p-4">
+                        <div class="about-card-icon mx-auto mb-4">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        </div>
+                        <h3 class="fs-5 fw-bold">Personalized Care</h3>
+                        <p class="text-secondary small">Our interactive face map helps you understand your skin's unique needs and problem areas.</p>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <article class="card h-100 border-0 shadow-sm rounded-4 text-center p-4">
+                        <div class="about-card-icon mx-auto mb-4">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <h3 class="fs-5 fw-bold">Community Driven</h3>
+                        <p class="text-secondary small">Real reviews and experiences from our community help you make informed decisions.</p>
+                    </article>
+                </div>
+            </section>
 
-            <div class="about-card">
-                <div class="about-card-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path
-                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                        </path>
-                    </svg>
+            <section class="team-section mx-auto text-center" id="team-section" style="max-width: 1100px;">
+                <h2 class="text-uppercase mb-5">Meet Our Team</h2>
+                <div class="row justify-content-center g-4">
+                    <article class="col-12 col-sm-6 col-md-4 team-member">
+                        <div class="team-member-avatar"><img src="../img/team/averion.jpg" alt="Charisma Abbey P. Averion"></div>
+                        <h4 class="fs-6 fw-bold">Charisma Abbey P. Averion</h4>
+                    </article>
+                    <article class="col-12 col-sm-6 col-md-4 team-member">
+                        <div class="team-member-avatar"><img src="../img/team/peduca.jpg" alt="Sophia Rynelle Anne B. Peduca"></div>
+                        <h4 class="fs-6 fw-bold">Sophia Rynelle Anne B. Peduca</h4>
+                    </article>
+                    <article class="col-12 col-sm-6 col-md-4 team-member">
+                        <div class="team-member-avatar"><img src="../img/team/perez.jpg" alt="Paul Joel D. Perez"></div>
+                        <h4 class="fs-6 fw-bold">Paul Joel D. Perez</h4>
+                    </article>
+                    <article class="col-12 col-sm-6 col-md-4 team-member">
+                        <div class="team-member-avatar"><img src="../img/team/tarayo.jpg" alt="Naiomi V. Tarayo"></div>
+                        <h4 class="fs-6 fw-bold">Naiomi V. Tarayo</h4>
+                    </article>
+                    <article class="col-12 col-sm-6 col-md-4 team-member">
+                        <div class="team-member-avatar"><img src="../img/team/valencia.png" alt="Dwane Valencia"></div>
+                        <h4 class="fs-6 fw-bold">Dwane Valencia</h4>
+                    </article>
                 </div>
-                <h3>Personalized Care</h3>
-                <p>Our interactive face map helps you understand your skin's unique needs and problem areas.</p>
-            </div>
+            </section>
 
-            <div class="about-card">
-                <div class="about-card-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="9" cy="7" r="4"></circle>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                    </svg>
+            <section class="faq-section mx-auto mt-5 pt-5 mb-5 pb-5" id="faq-section" style="max-width: 1100px;">
+                <h2 class="text-uppercase text-center mb-5">Frequently Asked Questions</h2>
+                <div class="table-responsive shadow-sm rounded-4 overflow-hidden">
+                    <table class="table table-hover table-borderless mb-0 bg-white">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="font-mono text-uppercase text-white py-3 px-4" style="width: 35%; background-color: var(--fa-accent);">Question</th>
+                                <th scope="col" class="font-mono text-uppercase text-white py-3 px-4" style="background-color: var(--fa-accent);">Answer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-bottom">
+                                <td class="fw-bold py-4 px-4 align-middle">How does the Face Map work?</td>
+                                <td class="text-secondary py-4 px-4 align-middle">Click on a specific facial zone to view common skin issues and product recommendations targeted for that area.</td>
+                            </tr>
+                            <tr class="border-bottom">
+                                <td class="fw-bold py-4 px-4 align-middle">Are your products safe for sensitive skin?</td>
+                                <td class="text-secondary py-4 px-4 align-middle">Products are dermatologically tested. Review the ingredients list and conduct a patch test before full application.</td>
+                            </tr>
+                            <tr class="border-bottom">
+                                <td class="fw-bold py-4 px-4 align-middle">How do I track my order?</td>
+                                <td class="text-secondary py-4 px-4 align-middle">Tracking information is sent via email immediately upon shipment dispatch.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold py-4 px-4 align-middle">What is the return policy?</td>
+                                <td class="text-secondary py-4 px-4 align-middle">Unopened products can be returned within 30 days of purchase for a full refund.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <h3>Community Driven</h3>
-                <p>Real reviews and experiences from our community help you make informed decisions.</p>
-            </div>
-        </div>
-
-        <div class="team-section" id="team-section">
-            <h2>Meet Our Team</h2>
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="team-member-avatar">C</div>
-                    <h4>Charisma Abbey P. Averion</h4>
-                </div>
-                <div class="team-member">
-                    <div class="team-member-avatar">S</div>
-                    <h4>Sophia Rynelle Anne B. Peduca</h4>
-                </div>
-                <div class="team-member">
-                    <div class="team-member-avatar">P</div>
-                    <h4>Paul Joel D. Perez</h4>
-                </div>
-                <div class="team-member">
-                    <div class="team-member-avatar">N</div>
-                    <h4>Naiomi V. Tarayo</h4>
-                </div>
-                <div class="team-member">
-                    <div class="team-member-avatar">D</div>
-                    <h4>Dwane Valencia</h4>
-                </div>
-            </div>
+            </section>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <span class="font-mono">FaceAtlas</span>
-                <p>Science-backed skincare, made simple. Find your routine, understand your skin.</p>
-            </div>
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <aside class="cart-panel bg-white shadow d-flex flex-column" id="cartPanel">
+        <header class="cart-header p-4 border-bottom d-flex justify-content-between align-items-center">
+            <h3 class="m-0 fs-5 text-uppercase">Your Cart</h3>
+            <button class="btn btn-light rounded-circle p-2 d-flex" onclick="closeCart()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12" /></svg></button>
+        </header>
+        <div class="cart-content flex-grow-1 overflow-auto p-0" id="cartContent"></div>
+        <footer class="cart-footer p-4 border-top bg-light" id="cartFooter"></footer>
+    </aside>
 
-            <div class="footer-links">
-                <h4>Shop</h4>
-                <ul>
-                    <li><a href="./shop.html">Products</a></li>
-                    <li><a href="../index.html#face-map">Face Map</a></li>
-                    <li><a href="./ingredients.html">Ingredients</a></li>
-                    <!--<li><a href="shop.html">Routine</a></li>-->
-                </ul>
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 footer-brand">
+                    <span class="font-mono d-block mb-3">FaceAtlas</span>
+                    <p class="text-secondary small" style="max-width: 300px;">Science-backed skincare, made simple. Find your routine, understand your skin.</p>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 footer-links">
+                    <h4 class="font-mono small text-uppercase mb-4">Shop</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="shop.html" class="text-secondary text-decoration-none">Products</a></li>
+                        <li class="mb-2"><a href="../index.html#face-map" class="text-secondary text-decoration-none">Face Map</a></li>
+                        <li class="mb-2"><a href="ingredients.html" class="text-secondary text-decoration-none">Ingredients</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 footer-links">
+                    <h4 class="font-mono small text-uppercase mb-4">Learn</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Guides</a></li>
+                        <li class="mb-2"><a href="about.html#faq-section" class="text-secondary text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2 footer-links">
+                    <h4 class="font-mono small text-uppercase mb-4">Company</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#team-section" class="text-secondary text-decoration-none">Meet the Team</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-secondary text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="../index.html#contact" class="text-secondary text-decoration-none">Contact Us</a></li>
+                    </ul>
+                </div>
             </div>
-
-            <div class="footer-links">
-                <h4>Learn</h4>
-                <ul>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Guides</a></li>
-                    <li><a href="#">FAQ</a></li>
-                </ul>
+            <div class="row mt-5 pt-4 border-top border-secondary align-items-center">
+                <div class="col-12 text-center">
+                    <small class="text-secondary small mb-0">© 2026 FaceAtlas. All rights reserved.</small>
+                </div>
             </div>
-
-            <div class="footer-links">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#team-section">Meet the Team</a></li>
-                    <li><a href="./about.html">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="social-icons">
-                <a href="#">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                </a>
-                <a href="#">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M23 7l-7 5 7 5V7z"></path>
-                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
-                    </svg>
-                </a>
-                <a href="#">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                </a>
-            </div>
-            <p class="copyright">© 2026 FaceAtlas. All rights reserved.</p>
         </div>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
 </body>
-
 </html>
