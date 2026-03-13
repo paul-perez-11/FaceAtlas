@@ -395,7 +395,7 @@ function renderCart() {
     }
 
     content.innerHTML = cart.map(item => `
-        <div class="d-flex gap-3 py-3 border-bottom">
+        <div class="d-flex gap-3 py-3 px-4 border-bottom">
             <img src="${item.image}" alt="${item.name}" class="rounded-3 object-fit-cover" style="width: 80px; height: 80px; background: #f8f9fa;">
             <div class="d-flex flex-column justify-content-between flex-grow-1">
                 <div>
