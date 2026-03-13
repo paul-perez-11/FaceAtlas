@@ -263,6 +263,50 @@ function openProductModal(productId) {
     document.body.style.overflow = 'hidden';
 }
 
+function openProductModalHome(productId, imageSrc) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    const overlay = document.getElementById('productModalOverlay');
+    const modalContent = document.getElementById('productModalContent');
+
+    modalContent.innerHTML = `
+        <div class="row g-0">
+            <button class="btn btn-light position-absolute rounded-circle p-0 d-flex align-items-center justify-content-center shadow" onclick="closeProductModal()" style="top: 24px; right: 24px; width: 44px; height: 44px; z-index: 10;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-4">
+                <img src="${imageSrc}" alt="${product.name}" class="img-fluid rounded-4 shadow-sm" style="max-width: 300px;">
+            </div>
+            <div class="col-md-7 p-4 p-md-5">
+                <p class="font-mono small text-uppercase text-secondary mb-2">${product.brand}</p>
+                <h2 class="fs-3 fw-bold mb-3 pe-5">${product.name}</h2>
+                <p class="fs-4 fw-bold text-danger mb-4">PHP ${product.price.toFixed(2)}</p>
+                <p class="text-secondary mb-4">${product.fullDesc}</p>
+                
+                <h4 class="font-mono small text-uppercase mb-2">Key Benefits</h4>
+                <ul class="list-unstyled mb-4">
+                    ${product.benefits.map(b => `<li class="d-flex align-items-center gap-2 mb-1"><span class="text-danger">•</span><span class="small text-secondary">${b}</span></li>`).join('')}
+                </ul>
+                
+                <h4 class="font-mono small text-uppercase mb-2">Key Ingredients</h4>
+                <p class="small text-secondary mb-4">${product.ingredients}</p>
+                
+                <h4 class="font-mono small text-uppercase mb-2">Best For</h4>
+                <p class="small text-secondary mb-4">${product.skinType}</p>
+                
+                <button class="btn btn-primary w-100 rounded-pill py-3 d-flex align-items-center justify-content-center gap-2" onclick="addToCart('${product.id}')">
+                    Add to Cart
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M6 6L5 3H2"/></svg>
+                </button>
+            </div>
+        </div>
+    `;
+
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
 function closeProductModal() {
     const overlay = document.getElementById('productModalOverlay');
     if (overlay) {
