@@ -120,7 +120,7 @@ function openSuggestedProducts(zoneKey) {
             <p class="text-secondary mb-4 text-center">Curated products to address common concerns in this area:</p>
             <div class="d-flex flex-column gap-4">
                 ${suggestedProducts.map(product => `
-                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden" onclick="openProductModal('${product.id}')" style="cursor: pointer; transition: transform 0.2s;">
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden" onclick="openProductModalHome('${product.id}')" style="cursor: pointer; transition: transform 0.2s;">
                         <div class="row g-0 align-items-center p-3">
                             <div class="col-4">
                                 <img src="img/product_${product.id}.jpg" alt="${product.name}" class="img-fluid rounded-3" style="aspect-ratio: 1; object-fit: cover;">
@@ -263,7 +263,7 @@ function openProductModal(productId) {
     document.body.style.overflow = 'hidden';
 }
 
-function openProductModalHome(productId, imageSrc) {
+function openProductModalHome(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
@@ -276,7 +276,7 @@ function openProductModalHome(productId, imageSrc) {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
             </button>
             <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-4">
-                <img src="img/${imageSrc}" alt="${product.name}" class="img-fluid rounded-4 shadow-sm" style="max-width: 300px;">
+                <img src="img/product_${product.id}.jpg" alt="${product.name}" class="img-fluid rounded-4 shadow-sm" style="max-width: 300px;">
             </div>
             <div class="col-md-7 p-4 p-md-5">
                 <p class="font-mono small text-uppercase text-secondary mb-2">${product.brand}</p>
