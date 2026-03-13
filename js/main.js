@@ -2,91 +2,52 @@
 // FaceAtlas - Main JavaScript
 // ========================================
 
-// ========================================
-// Navigation Scroll Effect
-// ========================================
 document.addEventListener('DOMContentLoaded', function () {
     const navbar = document.getElementById('navbar');
     if (navbar) {
         const handleScroll = () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled', 'shadow-sm');
-            } else {
-                navbar.classList.remove('scrolled', 'shadow-sm');
-            }
+            if (window.scrollY > 50) navbar.classList.add('scrolled', 'shadow-sm');
+            else navbar.classList.remove('scrolled', 'shadow-sm');
         };
         window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Trigger on load in case of page refresh
+        handleScroll();
     }
 });
 
-// ========================================
-// Face Map Data & Interaction
-// ========================================
 const faceZoneData = {
     forehead: {
         title: 'Forehead',
-        issues: [
-            { name: 'Forehead Acne', icon: '!' },
-            { name: 'Fine Lines & Wrinkles', icon: '~' },
-            { name: 'Excess Oil', icon: '💧' },
-            { name: 'Dry Patches', icon: '🍂' }
-        ],
+        issues: [{ name: 'Forehead Acne', icon: '!' }, { name: 'Fine Lines & Wrinkles', icon: '~' }, { name: 'Excess Oil', icon: '💧' }, { name: 'Dry Patches', icon: '🍂' }],
         tips: 'Use non-comedogenic products. Consider salicylic acid for acne-prone areas. Apply sunscreen daily to prevent premature aging.',
         suggestedProducts: ['cleanser', 'serum', 'sunscreen']
     },
     nose: {
         title: 'Nose (T-Zone)',
-        issues: [
-            { name: 'Blackheads', icon: '•' },
-            { name: 'Enlarged Pores', icon: '○' },
-            { name: 'Excess Sebum', icon: '💧' },
-            { name: 'Sebaceous Filaments', icon: '∙' }
-        ],
+        issues: [{ name: 'Blackheads', icon: '•' }, { name: 'Enlarged Pores', icon: '○' }, { name: 'Excess Sebum', icon: '💧' }, { name: 'Sebaceous Filaments', icon: '∙' }],
         tips: 'Use BHA (salicylic acid) to unclog pores. Clay masks can help absorb excess oil. Avoid over-stripping with harsh cleansers.',
         suggestedProducts: ['cleanser', 'mask', 'toner']
     },
     'left-cheek': {
         title: 'Left Cheek',
-        issues: [
-            { name: 'Cheek Acne', icon: '!' },
-            { name: 'Rosacea', icon: '🔴' },
-            { name: 'Hyperpigmentation', icon: '◐' },
-            { name: 'Texture Issues', icon: '≋' }
-        ],
+        issues: [{ name: 'Cheek Acne', icon: '!' }, { name: 'Rosacea', icon: '🔴' }, { name: 'Hyperpigmentation', icon: '◐' }, { name: 'Texture Issues', icon: '≋' }],
         tips: 'Check pillowcase cleanliness. Consider azelaic acid for redness. Use niacinamide for pigmentation concerns.',
         suggestedProducts: ['cleanser', 'serum', 'moisturizer']
     },
     'right-cheek': {
         title: 'Right Cheek',
-        issues: [
-            { name: 'Cheek Acne', icon: '!' },
-            { name: 'Rosacea', icon: '🔴' },
-            { name: 'Hyperpigmentation', icon: '◐' },
-            { name: 'Texture Issues', icon: '≋' }
-        ],
+        issues: [{ name: 'Cheek Acne', icon: '!' }, { name: 'Rosacea', icon: '🔴' }, { name: 'Hyperpigmentation', icon: '◐' }, { name: 'Texture Issues', icon: '≋' }],
         tips: 'Check pillowcase cleanliness. Consider azelaic acid for redness. Use niacinamide for pigmentation concerns.',
         suggestedProducts: ['cleanser', 'serum', 'moisturizer']
     },
     'under-eyes': {
         title: 'Under Eyes',
-        issues: [
-            { name: 'Dark Circles', icon: '●' },
-            { name: 'Puffiness', icon: '👁' },
-            { name: 'Fine Lines', icon: '~' },
-            { name: 'Milia', icon: '∘' }
-        ],
+        issues: [{ name: 'Dark Circles', icon: '●' }, { name: 'Puffiness', icon: '👁' }, { name: 'Fine Lines', icon: '~' }, { name: 'Milia', icon: '∘' }],
         tips: 'Use gentle, fragrance-free eye cream. Get adequate sleep. Apply cold compresses for puffiness. Use SPF to prevent further damage.',
         suggestedProducts: ['eyecream', 'serum']
     },
     chin: {
         title: 'Chin & Jawline',
-        issues: [
-            { name: 'Hormonal Acne', icon: '!' },
-            { name: 'Ingrown Hairs', icon: '⌖' },
-            { name: 'Dryness', icon: '🍂' },
-            { name: 'Double Chin', icon: '⌄' }
-        ],
+        issues: [{ name: 'Hormonal Acne', icon: '!' }, { name: 'Ingrown Hairs', icon: '⌖' }, { name: 'Dryness', icon: '🍂' }, { name: 'Double Chin', icon: '⌄' }],
         tips: 'Track breakouts with menstrual cycle. Avoid touching face. Use benzoyl peroxide for active breakouts. Consider retinoids for texture.',
         suggestedProducts: ['cleanser', 'retinol', 'moisturizer']
     }
@@ -101,13 +62,8 @@ document.addEventListener('DOMContentLoaded', function () {
             zone.addEventListener('click', function () {
                 faceZones.forEach(z => z.classList.remove('active'));
                 this.classList.add('active');
-
                 const zoneKey = this.getAttribute('data-zone');
-                const data = faceZoneData[zoneKey];
-
-                if (data) {
-                    updateInfoPanel(data, zoneKey);
-                }
+                if (faceZoneData[zoneKey]) updateInfoPanel(faceZoneData[zoneKey], zoneKey);
             });
         });
     }
@@ -132,9 +88,8 @@ function updateInfoPanel(data, zoneKey) {
             <h4 class="font-mono small text-uppercase mb-2 text-secondary">Care Tips</h4>
             <p class="small mb-0">${data.tips}</p>
         </div>
-        <button class="btn btn-primary w-100 rounded-pill py-2" onclick="openSuggestedProducts('${zoneKey}')">
+        <button class="btn btn-primary w-100 rounded-pill py-3" onclick="openSuggestedProducts('${zoneKey}')">
             See Suggested Products
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ms-2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
     `;
 
@@ -154,28 +109,33 @@ function openSuggestedProducts(zoneKey) {
     const overlay = document.getElementById('sidePanelOverlay');
     const panel = document.getElementById('sidePanel');
     const content = document.getElementById('sidePanelContent');
-
     const suggestedProducts = data.suggestedProducts.map(id => products.find(p => p.id === id)).filter(Boolean);
 
     content.innerHTML = `
-        <div class="bg-light p-3 rounded-3 mb-4">
-            <h4 class="font-mono small text-uppercase text-secondary mb-1">Selected Area</h4>
-            <p class="fw-bold mb-0">${data.title}</p>
-        </div>
-        <p class="small text-secondary mb-4">Curated products to address common concerns in this area:</p>
-        <div class="d-flex flex-column gap-3">
-            ${suggestedProducts.map(product => `
-                <div class="card border-0 shadow-sm rounded-4 overflow-hidden" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
-                    <div class="d-flex">
-                        <img src="${product.image}" alt="${product.name}" style="width: 100px; object-fit: cover;">
-                        <div class="card-body p-3">
-                            <span class="badge bg-danger mb-2">${product.category}</span>
-                            <h6 class="mb-1">${product.name}</h6>
-                            <p class="small text-secondary mb-0">${product.shortDesc}</p>
+        <div class="p-4">
+            <div class="bg-light p-4 rounded-4 mb-4 text-center">
+                <h4 class="font-mono small text-uppercase text-secondary mb-2">Selected Area</h4>
+                <p class="fs-5 fw-bold mb-0">${data.title}</p>
+            </div>
+            <p class="text-secondary mb-4 text-center">Curated products to address common concerns in this area:</p>
+            <div class="d-flex flex-column gap-4">
+                ${suggestedProducts.map(product => `
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden" onclick="openProductModal('${product.id}')" style="cursor: pointer; transition: transform 0.2s;">
+                        <div class="row g-0 align-items-center p-3">
+                            <div class="col-4">
+                                <img src="${product.image}" alt="${product.name}" class="img-fluid rounded-3" style="aspect-ratio: 1; object-fit: cover;">
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body py-0 pe-0">
+                                    <span class="badge bg-danger mb-2 font-mono fw-normal">${product.category}</span>
+                                    <h6 class="mb-1 fw-bold">${product.name}</h6>
+                                    <p class="small text-secondary mb-0" style="line-height: 1.4;">${product.shortDesc}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('')}
+                `).join('')}
+            </div>
         </div>
     `;
 
@@ -194,20 +154,14 @@ function closeSidePanel() {
     }
 }
 
-// ========================================
-// Products Loading & Shop Logic
-// ========================================
 let products = [];
 
 async function loadProducts() {
     try {
-        // Dynamic path based on whether we are in /pages/ or root
         const basePath = window.location.pathname.includes('/pages/') ? '../' : './';
         const response = await fetch(basePath + 'data/products.json');
-        
         if (!response.ok) throw new Error('Failed to load products.json');
         products = await response.json();
-        
         const shopGrid = document.getElementById('shopProductsGrid');
         if (shopGrid) {
             renderShopProducts(products);
@@ -220,42 +174,25 @@ async function loadProducts() {
 
 document.addEventListener('DOMContentLoaded', loadProducts);
 
-// Search & Filter
 document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('shopSearch');
-    if (searchInput) {
-        searchInput.addEventListener('input', function () {
-            filterProducts(this.value.toLowerCase());
-        });
-    }
-
+    if (searchInput) searchInput.addEventListener('input', function () { filterProducts(this.value.toLowerCase()); });
     const filterCheckboxes = document.querySelectorAll('.filter-option input[type="checkbox"]');
-    filterCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => filterProducts());
-    });
+    filterCheckboxes.forEach(checkbox => checkbox.addEventListener('change', () => filterProducts()));
 });
 
 function filterProducts(searchQuery = '') {
     const searchInput = document.getElementById('shopSearch');
-    if (searchInput && !searchQuery) {
-        searchQuery = searchInput.value.toLowerCase();
-    }
-
+    if (searchInput && !searchQuery) searchQuery = searchInput.value.toLowerCase();
     const selectedCategories = Array.from(document.querySelectorAll('.filter-category:checked')).map(cb => cb.value);
     const selectedBrands = Array.from(document.querySelectorAll('.filter-brand:checked')).map(cb => cb.value);
 
     let filtered = products.filter(product => {
-        const matchesSearch = !searchQuery ||
-            product.name.toLowerCase().includes(searchQuery) ||
-            product.brand.toLowerCase().includes(searchQuery) ||
-            product.category.toLowerCase().includes(searchQuery);
-
+        const matchesSearch = !searchQuery || product.name.toLowerCase().includes(searchQuery) || product.brand.toLowerCase().includes(searchQuery) || product.category.toLowerCase().includes(searchQuery);
         const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(product.category);
         const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(product.brand);
-
         return matchesSearch && matchesCategory && matchesBrand;
     });
-
     renderShopProducts(filtered);
 }
 
@@ -264,17 +201,13 @@ function renderShopProducts(productsToRender) {
     if (!productGrid) return;
 
     if (productsToRender.length === 0) {
-        productGrid.innerHTML = `
-            <div class="col-12 text-center p-5">
-                <p class="text-secondary">No products found matching your criteria.</p>
-            </div>
-        `;
+        productGrid.innerHTML = `<div class="col-12 text-center p-5"><p class="text-secondary">No products found matching your criteria.</p></div>`;
         return;
     }
 
     productGrid.innerHTML = productsToRender.map(product => `
         <div class="col-sm-6 col-md-4 col-xl-3">
-            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden shop-product-card" onclick="openProductModal('${product.id}')" style="cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden shop-product-card" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
                 <img src="${product.image}" alt="${product.name}" class="card-img-top" style="aspect-ratio: 1; object-fit: cover;">
                 <div class="card-body p-3 d-flex flex-column">
                     <p class="font-mono text-secondary small text-uppercase mb-1" style="font-size:10px;">${product.brand}</p>
@@ -303,9 +236,6 @@ function updateFilterCounts() {
     });
 }
 
-// ========================================
-// Product Modal
-// ========================================
 function openProductModal(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
@@ -374,9 +304,6 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-// ========================================
-// Shopping Cart
-// ========================================
 let cart = [];
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -408,9 +335,7 @@ function addToCart(productId) {
 
     const existingItem = cart.find(item => item.id === productId);
     if (existingItem) existingItem.quantity += 1;
-    else {
-        cart.push({ id: product.id, name: product.name, brand: product.brand, price: product.price, image: product.image, quantity: 1 });
-    }
+    else cart.push({ id: product.id, name: product.name, brand: product.brand, price: product.price, image: product.image, quantity: 1 });
 
     saveCart();
     alert(`Added ${product.name} to your cart!`);

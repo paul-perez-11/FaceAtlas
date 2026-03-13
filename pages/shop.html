@@ -10,15 +10,18 @@
 </head>
 <body>
     <nav id="navbar" class="navbar navbar-expand-lg fixed-top px-4 py-3">
-        <div class="container-fluid">
-            <a href="../index.html" class="navbar-brand logo mb-0">FaceAtlas</a>
-            <div class="d-none d-lg-flex nav-links mx-auto">
-                <a href="../index.html">Home</a>
-                <a href="shop.html" class="active">Shop</a>
-                <a href="about.html">About Us</a>
+        <div class="container-fluid position-relative d-flex justify-content-between align-items-center">
+            <a href="../index.html" class="navbar-brand logo mb-0" style="letter-spacing: 2px;">FACEATLAS</a>
+            <div class="d-none d-lg-flex nav-links position-absolute top-50 start-50 translate-middle">
+                <a href="../index.html" class="text-decoration-none text-secondary mx-3">HOME</a>
+                <a href="shop.html" class="active text-decoration-none fw-bold text-dark mx-3">SHOP</a>
+                <a href="about.html" class="text-decoration-none text-secondary mx-3">ABOUT US</a>
             </div>
-            <div class="user-icon ms-auto">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <div class="d-flex align-items-center ms-auto">
+                <button class="cart-icon-btn position-relative bg-transparent border-0 d-flex align-items-center justify-content-center" id="cartIconBtn" onclick="openCart()" style="width: 44px; height: 44px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z" /><circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" /><path d="M6 6L5 3H2" /></svg>
+                    <span class="cart-badge position-absolute bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" id="cartBadge" style="top:0px; right:0px; width:20px; height:20px; font-size:11px;">0</span>
+                </button>
             </div>
         </div>
     </nav>
@@ -32,10 +35,6 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="position-absolute" style="left: 1rem; top: 50%; transform: translateY(-50%); color: var(--fa-text-secondary);"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
                         <input type="text" id="shopSearch" class="form-control rounded-pill ps-5 py-2 border" placeholder="Search products, brands...">
                     </div>
-                    <button class="cart-icon-btn position-relative bg-white border rounded-circle d-flex align-items-center justify-content-center p-2" id="cartIconBtn" onclick="openCart()" style="width: 44px; height: 44px;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z" /><circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" /><path d="M6 6L5 3H2" /></svg>
-                        <span class="cart-badge position-absolute bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" id="cartBadge" style="top:-4px; right:-4px; width:20px; height:20px; font-size:11px;">0</span>
-                    </button>
                 </div>
             </div>
 
@@ -70,17 +69,71 @@
         </div>
     </main>
 
-    <div class="modal-overlay" id="productModalOverlay"><div class="product-modal container bg-white rounded-4" id="productModalContent"></div></div>
-
     <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
-    <div class="cart-panel bg-white shadow d-flex flex-column" id="cartPanel" style="position:fixed; top:0; right:0; width:400px; max-width:100%; height:100vh; z-index:2501; transform:translateX(100%); transition:transform 0.3s ease;">
+    <div class="cart-panel bg-white shadow d-flex flex-column" id="cartPanel">
         <div class="cart-header p-4 border-bottom d-flex justify-content-between align-items-center">
             <h3 class="m-0 fs-5 text-uppercase">Your Cart</h3>
-            <button class="btn btn-light rounded-circle p-2" onclick="closeCart()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12" /></svg></button>
+            <button class="btn btn-light rounded-circle p-2 d-flex" onclick="closeCart()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12" /></svg></button>
         </div>
-        <div class="cart-content flex-grow-1 overflow-auto p-4" id="cartContent"></div>
+        <div class="cart-content flex-grow-1 overflow-auto p-0" id="cartContent"></div>
         <div class="cart-footer p-4 border-top bg-light" id="cartFooter"></div>
     </div>
+
+    <div class="side-panel-overlay" id="sidePanelOverlay" onclick="closeSidePanel()"></div>
+    <div class="side-panel" id="sidePanel">
+        <div class="side-panel-header p-4 border-bottom d-flex justify-content-between align-items-center">
+            <h3 class="m-0 fs-5 text-uppercase">Suggested Products</h3>
+            <button class="btn btn-light rounded-circle p-2 d-flex" onclick="closeSidePanel()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+        </div>
+        <div class="side-panel-content p-0" id="sidePanelContent"></div>
+    </div>
+
+    <div class="modal-overlay" id="productModalOverlay"><div class="product-modal container bg-white rounded-4 overflow-hidden" id="productModalContent"></div></div>
+
+    <footer class="bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 footer-brand">
+                    <span class="font-mono d-block mb-3">FaceAtlas</span>
+                    <p class="text-secondary small" style="max-width: 300px;">Science-backed skincare, made simple. Find your routine, understand your skin.</p>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 footer-links">
+                    <h4 class="font-mono small text-uppercase mb-4">Shop</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="shop.html" class="text-secondary text-decoration-none">Products</a></li>
+                        <li class="mb-2"><a href="../index.html#face-map" class="text-secondary text-decoration-none">Face Map</a></li>
+                        <li class="mb-2"><a href="ingredients.html" class="text-secondary text-decoration-none">Ingredients</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 footer-links">
+                    <h4 class="font-mono small text-uppercase mb-4">Learn</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Guides</a></li>
+                        <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2 footer-links">
+                    <h4 class="font-mono small text-uppercase mb-4">Company</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="about.html#team-section" class="text-secondary text-decoration-none">Meet the Team</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-secondary text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="../index.html#contact" class="text-secondary text-decoration-none">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-5 pt-4 border-top border-secondary align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <div class="social-icons d-flex gap-3 justify-content-center justify-content-md-start">
+                        <a href="#" class="rounded-circle bg-secondary d-flex align-items-center justify-content-center" style="width:40px;height:40px;color:white;text-decoration:none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="text-secondary small mb-0">© 2026 FaceAtlas. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
