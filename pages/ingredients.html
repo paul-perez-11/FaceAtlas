@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FaceAtlas Ingredient Library. Understand what goes on your skin with science-backed breakdowns of effective skincare ingredients.">
     <title>Ingredients - FaceAtlas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
@@ -28,19 +29,19 @@
 
     <main class="ingredients-page pt-5 mt-5">
         <div class="container">
-            <div class="ingredients-hero text-center mx-auto mb-5" style="max-width: 700px;">
+            <header class="ingredients-hero text-center mx-auto mb-5" style="max-width: 700px;">
                 <h1 class="display-5 fw-bold text-uppercase mb-3">Ingredient Library</h1>
                 <p class="text-secondary mb-4">Understand what goes on your skin. Science-backed breakdowns of the most effective skincare ingredients.</p>
                 <div class="ingredient-search position-relative mx-auto" style="max-width: 400px;">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="position-absolute" style="left: 1rem; top: 50%; transform: translateY(-50%); color: var(--fa-text-secondary);"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
                     <input type="text" id="ingredientSearch" class="form-control rounded-pill ps-5 py-2 border" placeholder="Search ingredients...">
                 </div>
-            </div>
+            </header>
 
             <div class="row g-4">
                 <div class="col-lg-3">
                     <aside class="ingredients-sidebar position-sticky" style="top: 90px;">
-                        <div class="filter-group bg-white p-4 rounded-4 shadow-sm mb-4">
+                        <section class="filter-group bg-white p-4 rounded-4 shadow-sm mb-4">
                             <h3 class="fs-6 font-mono text-uppercase mb-3 pb-2 border-bottom">Category</h3>
                             <button class="category-btn w-100 text-start border-0 rounded-3 py-2 px-3 mb-2 active bg-light fw-medium" data-category="all">All Ingredients</button>
                             <button class="category-btn w-100 text-start border-0 rounded-3 py-2 px-3 mb-2 bg-transparent text-secondary" data-category="exfoliants">Exfoliants</button>
@@ -50,32 +51,32 @@
                             <button class="category-btn w-100 text-start border-0 rounded-3 py-2 px-3 mb-2 bg-transparent text-secondary" data-category="acne-fighting">Acne-Fighting</button>
                             <button class="category-btn w-100 text-start border-0 rounded-3 py-2 px-3 mb-2 bg-transparent text-secondary" data-category="soothing">Soothing</button>
                             <button class="category-btn w-100 text-start border-0 rounded-3 py-2 px-3 mb-2 bg-transparent text-secondary" data-category="brightening">Brightening</button>
-                        </div>
-                        <div class="ingredient-fact p-4 rounded-4 text-white d-none d-lg-block">
+                        </section>
+                        <section class="ingredient-fact p-4 rounded-4 text-white d-none d-lg-block">
                             <h4 class="font-mono small text-uppercase mb-2 opacity-75">Did you know?</h4>
                             <p id="ingredientFact" class="mb-0">Vitamin C is most effective when stored in dark, airtight containers as it oxidizes quickly when exposed to light and air.</p>
-                        </div>
+                        </section>
                     </aside>
                 </div>
-                <div class="col-lg-9">
+                <section class="col-lg-9">
                     <div class="row g-3" id="ingredientsGrid"></div>
-                </div>
+                </section>
             </div>
         </div>
     </main>
 
     <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
-    <div class="cart-panel bg-white shadow d-flex flex-column" id="cartPanel">
-        <div class="cart-header p-4 border-bottom d-flex justify-content-between align-items-center">
+    <aside class="cart-panel bg-white shadow d-flex flex-column" id="cartPanel">
+        <header class="cart-header p-4 border-bottom d-flex justify-content-between align-items-center">
             <h3 class="m-0 fs-5 text-uppercase">Your Cart</h3>
             <button class="btn btn-light rounded-circle p-2 d-flex" onclick="closeCart()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12" /></svg></button>
-        </div>
+        </header>
         <div class="cart-content flex-grow-1 overflow-auto p-0" id="cartContent"></div>
-        <div class="cart-footer p-4 border-top bg-light" id="cartFooter"></div>
-    </div>
+        <footer class="cart-footer p-4 border-top bg-light" id="cartFooter"></footer>
+    </aside>
 
     <div class="modal-overlay" id="ingredientModalOverlay">
-        <div class="ingredient-modal container bg-white rounded-4 overflow-hidden" id="ingredientModalContent" style="max-width: 700px;"></div>
+        <section class="ingredient-modal container bg-white rounded-4 overflow-hidden" id="ingredientModalContent" style="max-width: 700px;"></section>
     </div>
 
     <footer class="bg-dark text-white py-5 mt-5">
@@ -98,7 +99,7 @@
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Blog</a></li>
                         <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Guides</a></li>
-                        <li class="mb-2"><a href="/pages/about.html#faq-section" class="text-secondary text-decoration-none">FAQ</a></li>
+                        <li class="mb-2"><a href="about.html#faq-section" class="text-secondary text-decoration-none">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="col-12 col-md-4 col-lg-2 footer-links">

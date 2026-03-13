@@ -207,14 +207,14 @@ function renderShopProducts(productsToRender) {
 
     productGrid.innerHTML = productsToRender.map(product => `
         <div class="col-sm-6 col-md-4 col-xl-3">
-            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden shop-product-card" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
+            <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden shop-product-card" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
                 <img src="${product.image}" alt="${product.name}" class="card-img-top" style="aspect-ratio: 1; object-fit: cover;">
                 <div class="card-body p-3 d-flex flex-column">
                     <p class="font-mono text-secondary small text-uppercase mb-1" style="font-size:10px;">${product.brand}</p>
                     <h4 class="fs-6 mb-2 flex-grow-1">${product.name}</h4>
                     <p class="text-danger fw-bold mb-0">PHP ${product.price.toFixed(2)}</p>
                 </div>
-            </div>
+            </article>
         </div>
     `).join('');
 }

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FaceAtlas helps you map your skin type, decode ingredients, and build a routine that fits. Explore our interactive face map for personalized skincare.">
     <title>FaceAtlas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
@@ -26,204 +27,206 @@
         </div>
     </nav>
 
-    <section class="hero position-relative d-flex align-items-center overflow-hidden">
-        <div class="container">
-            <div class="row align-items-center g-4 w-100 mx-0">
-                <div class="col-lg-4 order-2 order-lg-1 mb-5 mb-lg-0 pe-lg-4 text-center text-lg-start">
-                    <h1 class="display-4 fw-bold text-uppercase mb-4 text-dark" style="letter-spacing: -1px;">Skin is<br>A system.</h1>
-                    <p class="text-dark mb-4" style="font-size: 15px; line-height: 1.6;">FaceAtlas helps you map your skin type, decode ingredients, and build a routine that actually fits. Explore our interactive face map to understand your skin better.</p>
-                    <a href="#face-map" class="btn btn-primary rounded-20 px-3 py-2 text-white text-decoration-none shadow-sm" style="background-color: #ff4d6d; border: none;">
-                        Explore Face Map &rarr;
-                    </a>
-                </div>
-                <div class="col-lg-4 order-1 order-lg-2 mb-5 mb-lg-0 d-flex justify-content-center">
-                    <img src="img/hero_image.jpg" alt="Healthy skin" class="img-fluid rounded-circle object-fit-cover shadow-sm" style="width: 450px; height: 450px;">
-                </div>
-                <div class="col-lg-4 order-3 order-lg-3 ps-lg-5 d-flex align-items-center justify-content-center justify-content-lg-start gap-3">
-                    <div class="d-flex flex-column gap-3">
-                        <span class="border border-dark rounded-pill px-3 py-2 font-mono text-center" style="font-size: 10px;">SCIENCE-<br>BACKED</span>
-                        <span class="border border-dark rounded-pill px-3 py-2 font-mono text-center" style="font-size: 10px;">SENSITIVE-<br>SAFE</span>
-                        <span class="border border-dark rounded-pill px-3 py-2 font-mono text-center" style="font-size: 10px;">COMMUNITY-<br>TESTED</span>
+    <main>
+        <section class="hero position-relative d-flex align-items-center overflow-hidden">
+            <div class="container">
+                <div class="row align-items-center g-4 w-100 mx-0">
+                    <div class="col-lg-4 order-2 order-lg-1 mb-5 mb-lg-0 pe-lg-4 text-center text-lg-start">
+                        <h1 class="display-4 fw-bold text-uppercase mb-4 text-dark" style="letter-spacing: -1px;">Skin is<br>A system.</h1>
+                        <p class="text-dark mb-4" style="font-size: 15px; line-height: 1.6;">FaceAtlas helps you map your skin type, decode ingredients, and build a routine that actually fits. Explore our interactive face map to understand your skin better.</p>
+                        <a href="#face-map" class="btn btn-primary rounded-0 px-3 py-2 text-white text-decoration-none shadow-sm" style="background-color: #ff4d6d; border: none;">
+                            Explore Face Map &rarr;
+                        </a>
                     </div>
-                    <p class="text-dark m-0 d-none d-lg-block" style="font-size: 14px;">Browse 200+ ingredients and<br>120+ products.</p>
+                    <div class="col-lg-4 order-1 order-lg-2 mb-5 mb-lg-0 d-flex justify-content-center">
+                        <img src="img/hero_image.jpg" alt="Healthy skin" class="img-fluid rounded-circle object-fit-cover shadow-sm" style="width: 450px; height: 450px;">
+                    </div>
+                    <div class="col-lg-4 order-3 order-lg-3 ps-lg-5 d-flex align-items-center justify-content-center justify-content-lg-start gap-3">
+                        <div class="d-flex flex-column gap-3">
+                            <span class="border border-dark rounded-pill px-3 py-2 font-mono text-center" style="font-size: 10px;">SCIENCE-<br>BACKED</span>
+                            <span class="border border-dark rounded-pill px-3 py-2 font-mono text-center" style="font-size: 10px;">SENSITIVE-<br>SAFE</span>
+                            <span class="border border-dark rounded-pill px-3 py-2 font-mono text-center" style="font-size: 10px;">COMMUNITY-<br>TESTED</span>
+                        </div>
+                        <p class="text-dark m-0 d-none d-lg-block" style="font-size: 14px;">Browse 200+ ingredients and<br>120+ products.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="face-map-section" id="face-map">
-        <div class="container">
-            <div class="section-header">
-                <h2>Interactive Face Map</h2>
-                <p>Click on different areas of the face to learn about common skin concerns and issues prone in each zone.</p>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-6 d-flex justify-content-center">
-                    <div class="face-image-container w-100" style="max-width: 400px;">
-                        <img src="img/face_map.jpg" alt="Face map for skin analysis" id="faceImage" class="img-fluid w-100">
-                        <svg class="face-zones-svg" viewBox="0 0 864 1184" preserveAspectRatio="xMidYMid meet">
-                            <g id="zonesGroup" transform="translate(-90, 160) scale(1.2, 1.2)"><path class="face-zone" data-zone="forehead" d="M 280 130 Q 432 100 584 130 Q 620 180 584 220 Q 432 210 280 220 Q 244 180 280 130 Z"></path></g>
-                            <g id="zonesGroup" transform="translate(20, 230) scale(0.93, 0.93)"><ellipse class="face-zone" data-zone="under-eyes" cx="330" cy="330" rx="75" ry="30"></ellipse></g>
-                            <g id="zonesGroup" transform="translate(40, 230) scale(0.93, 0.93)"><ellipse class="face-zone" data-zone="under-eyes" cx="534" cy="330" rx="75" ry="30"></ellipse></g>
-                            <g id="zonesGroup" transform="translate(30, 210) scale(0.93, 0.93)"><path class="face-zone" data-zone="nose" d="M 400 250 Q 432 240 464 250 Q 475 320 485 390 Q 475 460 432 480 Q 389 460 379 390 Q 389 320 400 250 Z"></path></g>
-                            <g id="zonesGroup" transform="translate(130, 340) scale(0.70, 0.70)"><path class="face-zone" data-zone="left-cheek" d="M 200 300 Q 280 280 340 320 Q 360 400 350 480 Q 280 520 180 480 Q 140 400 160 340 Q 180 310 200 300 Z"></path></g>
-                            <g id="zonesGroup" transform="translate(125, 230) scale(0.70, 0.70)"><path class="face-zone" data-zone="right-cheek" d="M 585 430 Q 655 440 700 490 Q 720 560 690 630 Q 640 675 570 650 Q 525 600 525 520 Q 535 455 585 430 Z"></path></g>
-                            <g id="zonesGroup" transform="translate(30, 90) scale(0.93, 0.93)"><path class="face-zone" data-zone="chin" d="M 350 520 Q 432 500 514 520 Q 580 580 600 680 Q 560 780 432 820 Q 304 780 264 680 Q 284 580 350 520 Z"></path></g>
-                        </svg>
+        <section class="face-map-section" id="face-map">
+            <div class="container">
+                <header class="section-header">
+                    <h2>Interactive Face Map</h2>
+                    <p>Click on different areas of the face to learn about common skin concerns and issues prone in each zone.</p>
+                </header>
+                <div class="row g-5">
+                    <div class="col-lg-6 d-flex justify-content-center">
+                        <div class="face-image-container w-100" style="max-width: 400px;">
+                            <img src="img/face_map.jpg" alt="Face map for skin analysis" id="faceImage" class="img-fluid w-100">
+                            <svg class="face-zones-svg" viewBox="0 0 864 1184" preserveAspectRatio="xMidYMid meet">
+                                <g id="zonesGroup" transform="translate(-90, 160) scale(1.2, 1.2)"><path class="face-zone" data-zone="forehead" d="M 280 130 Q 432 100 584 130 Q 620 180 584 220 Q 432 210 280 220 Q 244 180 280 130 Z"></path></g>
+                                <g id="zonesGroup" transform="translate(20, 230) scale(0.93, 0.93)"><ellipse class="face-zone" data-zone="under-eyes" cx="330" cy="330" rx="75" ry="30"></ellipse></g>
+                                <g id="zonesGroup" transform="translate(40, 230) scale(0.93, 0.93)"><ellipse class="face-zone" data-zone="under-eyes" cx="534" cy="330" rx="75" ry="30"></ellipse></g>
+                                <g id="zonesGroup" transform="translate(30, 210) scale(0.93, 0.93)"><path class="face-zone" data-zone="nose" d="M 400 250 Q 432 240 464 250 Q 475 320 485 390 Q 475 460 432 480 Q 389 460 379 390 Q 389 320 400 250 Z"></path></g>
+                                <g id="zonesGroup" transform="translate(130, 340) scale(0.70, 0.70)"><path class="face-zone" data-zone="left-cheek" d="M 200 300 Q 280 280 340 320 Q 360 400 350 480 Q 280 520 180 480 Q 140 400 160 340 Q 180 310 200 300 Z"></path></g>
+                                <g id="zonesGroup" transform="translate(125, 230) scale(0.70, 0.70)"><path class="face-zone" data-zone="right-cheek" d="M 585 430 Q 655 440 700 490 Q 720 560 690 630 Q 640 675 570 650 Q 525 600 525 520 Q 535 455 585 430 Z"></path></g>
+                                <g id="zonesGroup" transform="translate(30, 90) scale(0.93, 0.93)"><path class="face-zone" data-zone="chin" d="M 350 520 Q 432 500 514 520 Q 580 580 600 680 Q 560 780 432 820 Q 304 780 264 680 Q 284 580 350 520 Z"></path></g>
+                            </svg>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="info-panel" id="infoPanel">
-                        <div class="default-message">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                            <h3>Click on a facial area</h3>
-                            <p>Select any zone on the face to see common skin issues and care tips for that area.</p>
+                    <div class="col-lg-6">
+                        <div class="info-panel" id="infoPanel">
+                            <div class="default-message">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                <h3>Click on a facial area</h3>
+                                <p>Select any zone on the face to see common skin issues and care tips for that area.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="products-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Curated Products That Fit You</h2>
-                <p>Handpicked skincare essentials for every skin concern.</p>
+        <section class="products-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>Curated Products That Fit You</h2>
+                    <p>Handpicked skincare essentials for every skin concern.</p>
+                </header>
+                <div class="row g-4 justify-content-center mt-3">
+                    <div class="col-sm-6 col-lg-3">
+                        <article class="card product-card h-100 border-0" onclick="openProductModal('cleanser')">
+                            <img src="img/product_cleanser.jpg" class="card-img-top" alt="Gentle Cleanser">
+                            <div class="card-body product-info">
+                                <span class="product-tag">Cleanser</span>
+                                <h4>Gentle Foam Cleanser</h4>
+                                <p>Removes makeup without stripping.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <article class="card product-card h-100 border-0" onclick="openProductModal('moisturizer')">
+                            <img src="img/product_moisturizer.jpg" class="card-img-top" alt="Moisturizer">
+                            <div class="card-body product-info">
+                                <span class="product-tag">Moisturizer</span>
+                                <h4>Barrier Repair Cream</h4>
+                                <p>Rich, non-greasy recovery.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <article class="card product-card h-100 border-0" onclick="openProductModal('sunscreen')">
+                            <img src="img/product_sunscreen.jpg" class="card-img-top" alt="Sunscreen">
+                            <div class="card-body product-info">
+                                <span class="product-tag">Sunscreen</span>
+                                <h4>Daily UV Fluid SPF 50</h4>
+                                <p>No white cast, breathable finish.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <article class="card product-card h-100 border-0" onclick="openProductModal('serum')">
+                            <img src="img/product_serum.jpg" class="card-img-top" alt="Serum">
+                            <div class="card-body product-info">
+                                <span class="product-tag">Serum</span>
+                                <h4>Vitamin C Serum</h4>
+                                <p>Brightens and evens skin tone.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="text-center mt-5">
+                    <a href="pages/shop.html" class="btn-outline">View All Products <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ms-2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
             </div>
-            <div class="row g-4 justify-content-center mt-3">
-                <div class="col-sm-6 col-lg-3">
-                    <div class="card product-card h-100 border-0" onclick="openProductModal('cleanser')">
-                        <img src="img/product_cleanser.jpg" class="card-img-top" alt="Gentle Cleanser">
-                        <div class="card-body product-info">
-                            <span class="product-tag">Cleanser</span>
-                            <h4>Gentle Foam Cleanser</h4>
-                            <p>Removes makeup without stripping.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="card product-card h-100 border-0" onclick="openProductModal('moisturizer')">
-                        <img src="img/product_moisturizer.jpg" class="card-img-top" alt="Moisturizer">
-                        <div class="card-body product-info">
-                            <span class="product-tag">Moisturizer</span>
-                            <h4>Barrier Repair Cream</h4>
-                            <p>Rich, non-greasy recovery.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="card product-card h-100 border-0" onclick="openProductModal('sunscreen')">
-                        <img src="img/product_sunscreen.jpg" class="card-img-top" alt="Sunscreen">
-                        <div class="card-body product-info">
-                            <span class="product-tag">Sunscreen</span>
-                            <h4>Daily UV Fluid SPF 50</h4>
-                            <p>No white cast, breathable finish.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="card product-card h-100 border-0" onclick="openProductModal('serum')">
-                        <img src="img/product_serum.jpg" class="card-img-top" alt="Serum">
-                        <div class="card-body product-info">
-                            <span class="product-tag">Serum</span>
-                            <h4>Vitamin C Serum</h4>
-                            <p>Brightens and evens skin tone.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-5">
-                <a href="pages/shop.html" class="btn-outline">View All Products <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ms-2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="contact-section" id="contact">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 contact-info text-center text-lg-start">
-                    <h2>Get In Touch</h2>
-                    <p class="mx-auto mx-lg-0">Have questions about your skin or need personalized advice? We're here to help you build your perfect routine.</p>
-                    <div class="d-flex flex-column gap-4 align-items-center align-items-lg-start">
-                        <div class="contact-method d-flex align-items-center text-start">
-                            <div class="contact-icon me-3">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                            </div>
-                            <div class="contact-detail">
-                                <span class="label d-block">Email Us</span>
-                                <a href="mailto:hello@faceatlas.com" class="text-decoration-none text-dark fw-medium">hello@faceatlas.com</a>
-                            </div>
-                        </div>
-                        <div class="contact-method d-flex align-items-center text-start">
-                            <div class="contact-icon me-3">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                            </div>
-                            <div class="contact-detail">
-                                <span class="label d-block">Call Us</span>
-                                <a href="tel:+1234567890" class="text-decoration-none text-dark fw-medium">+1 (234) 567-890</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="contact-form-wrapper bg-white rounded-4 p-4 p-md-5 shadow-sm">
-                        <form class="contact-form" id="contactForm">
-                            <div class="row g-3 mb-3">
-                                <div class="col-md-6 form-group">
-                                    <label for="name" class="form-label font-mono small text-uppercase">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required>
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-6 contact-info text-center text-lg-start">
+                        <h2>Get In Touch</h2>
+                        <p class="mx-auto mx-lg-0">Have questions about your skin or need personalized advice? We're here to help you build your perfect routine.</p>
+                        <div class="d-flex flex-column gap-4 align-items-center align-items-lg-start">
+                            <div class="contact-method d-flex align-items-center text-start">
+                                <div class="contact-icon me-3">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                 </div>
-                                <div class="col-md-6 form-group">
-                                    <label for="email" class="form-label font-mono small text-uppercase">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="your@email.com" required>
+                                <div class="contact-detail">
+                                    <span class="label d-block">Email Us</span>
+                                    <a href="mailto:hello@faceatlas.com" class="text-decoration-none text-dark fw-medium">hello@faceatlas.com</a>
                                 </div>
                             </div>
-                            <div class="mb-3 form-group">
-                                <label for="subject" class="form-label font-mono small text-uppercase">Subject</label>
-                                <select class="form-select" id="subject" name="subject" required>
-                                    <option value="" disabled selected>Select a topic</option>
-                                    <option value="general">General Inquiry</option>
-                                    <option value="products">Product Questions</option>
-                                    <option value="skin">Skin Consultation</option>
-                                    <option value="order">Order Support</option>
-                                </select>
+                            <div class="contact-method d-flex align-items-center text-start">
+                                <div class="contact-icon me-3">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                </div>
+                                <div class="contact-detail">
+                                    <span class="label d-block">Call Us</span>
+                                    <a href="tel:+1234567890" class="text-decoration-none text-dark fw-medium">+1 (234) 567-890</a>
+                                </div>
                             </div>
-                            <div class="mb-4 form-group">
-                                <label for="message" class="form-label font-mono small text-uppercase">Message</label>
-                                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Tell us about your skin concerns or questions..." required></textarea>
-                            </div>
-                            <button type="submit" class="btn-primary w-100 py-2 rounded-pill d-flex align-items-center justify-content-center">
-                                Send Message
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ms-2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                            </button>
-                        </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="contact-form-wrapper bg-white rounded-4 p-4 p-md-5 shadow-sm">
+                            <form class="contact-form" id="contactForm">
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-6 form-group">
+                                        <label for="name" class="form-label font-mono small text-uppercase">Name</label>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="email" class="form-label font-mono small text-uppercase">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="your@email.com" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label for="subject" class="form-label font-mono small text-uppercase">Subject</label>
+                                    <select class="form-select" id="subject" name="subject" required>
+                                        <option value="" disabled selected>Select a topic</option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="products">Product Questions</option>
+                                        <option value="skin">Skin Consultation</option>
+                                        <option value="order">Order Support</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4 form-group">
+                                    <label for="message" class="form-label font-mono small text-uppercase">Message</label>
+                                    <textarea class="form-control" id="message" name="message" rows="4" placeholder="Tell us about your skin concerns or questions..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn-primary w-100 py-2 rounded-pill d-flex align-items-center justify-content-center">
+                                    Send Message
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ms-2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
-    <div class="cart-panel bg-white shadow d-flex flex-column" id="cartPanel">
-        <div class="cart-header p-4 border-bottom d-flex justify-content-between align-items-center">
+    <aside class="cart-panel bg-white shadow d-flex flex-column" id="cartPanel">
+        <header class="cart-header p-4 border-bottom d-flex justify-content-between align-items-center">
             <h3 class="m-0 fs-5 text-uppercase">Your Cart</h3>
             <button class="btn btn-light rounded-circle p-2 d-flex" onclick="closeCart()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12" /></svg></button>
-        </div>
+        </header>
         <div class="cart-content flex-grow-1 overflow-auto p-0" id="cartContent"></div>
-        <div class="cart-footer p-4 border-top bg-light" id="cartFooter"></div>
-    </div>
+        <footer class="cart-footer p-4 border-top bg-light" id="cartFooter"></footer>
+    </aside>
 
     <div class="side-panel-overlay" id="sidePanelOverlay" onclick="closeSidePanel()"></div>
-    <div class="side-panel" id="sidePanel">
-        <div class="side-panel-header p-4 border-bottom d-flex justify-content-between align-items-center">
+    <aside class="side-panel" id="sidePanel">
+        <header class="side-panel-header p-4 border-bottom d-flex justify-content-between align-items-center">
             <h3 class="m-0 fs-5 text-uppercase">Suggested Products</h3>
             <button class="btn btn-light rounded-circle p-2 d-flex" onclick="closeSidePanel()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
-        </div>
+        </header>
         <div class="side-panel-content p-0" id="sidePanelContent"></div>
-    </div>
+    </aside>
 
-    <div class="modal-overlay" id="productModalOverlay"><div class="product-modal container bg-white rounded-4 overflow-hidden" id="productModalContent"></div></div>
+    <div class="modal-overlay" id="productModalOverlay"><section class="product-modal container bg-white rounded-4 overflow-hidden" id="productModalContent"></section></div>
 
     <footer class="bg-dark text-white py-5">
         <div class="container">
@@ -245,7 +248,7 @@
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Blog</a></li>
                         <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Guides</a></li>
-                        <li class="mb-2"><a href="pages/about.html#faq-section" class="text-secondary text-decoration-none">FAQ</a></li>
+                        <li class="mb-2"><a href="./pages/about.html#faq-section" class="text-secondary text-decoration-none">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="col-12 col-md-4 col-lg-2 footer-links">

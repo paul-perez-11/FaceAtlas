@@ -49,7 +49,7 @@ function renderIngredients(ingredientsToRender) {
     
     grid.innerHTML = ingredientsToRender.map(ing => `
         <div class="col-md-6 col-xl-4">
-            <div class="card h-100 border-0 shadow-sm rounded-4 ingredient-card" onclick="openIngredientModal('${ing.id}')" style="cursor:pointer; transition:transform 0.3s, box-shadow 0.3s; --ing-color: ${ing.color}; border: 2px solid transparent;">
+            <article class="card h-100 border-0 shadow-sm rounded-4 ingredient-card" onclick="openIngredientModal('${ing.id}')" style="cursor:pointer; transition:transform 0.3s, box-shadow 0.3s; --ing-color: ${ing.color}; border: 2px solid transparent;">
                 <div class="card-body p-4 d-flex align-items-start gap-3">
                     <div class="rounded-4 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 56px; height: 56px; background: ${ing.color}20; color: ${ing.color}; font-family: 'Space Mono', monospace; font-weight: 700;">
                         <span>${ing.icon}</span>
@@ -68,7 +68,7 @@ function renderIngredients(ingredientsToRender) {
                         </svg>
                     </div>
                 </div>
-            </div>
+            </article>
         </div>
     `).join('');
 }
