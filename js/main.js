@@ -2,17 +2,6 @@
 // FaceAtlas - Main JavaScript
 // ========================================
 
-// Dynamically determine the correct path depending on the active directory
-const basePath = window.location.pathname.includes('/pages/') ? '../' : './';
-
-// Helper function to force images to load regardless of HTML file location
-function resolveImagePath(path) {
-    if (!path) return '';
-    // Strip existing '../' or './' from the JSON, then apply the correct basePath
-    const cleanPath = path.replace(/^(\.\.\/|\.\/)/, '');
-    return basePath + cleanPath;
-}
-
 document.addEventListener('DOMContentLoaded', function () {
     const navbar = document.getElementById('navbar');
     if (navbar) {
@@ -134,7 +123,7 @@ function openSuggestedProducts(zoneKey) {
                     <div class="card border-0 shadow-sm rounded-4 overflow-hidden" onclick="openProductModal('${product.id}')" style="cursor: pointer; transition: transform 0.2s;">
                         <div class="row g-0 align-items-center p-3">
                             <div class="col-4">
-                                <img src="${resolveImagePath(product.image)}" alt="${product.name}" class="img-fluid rounded-3" style="aspect-ratio: 1; object-fit: cover;">
+                                <img src="${product.image}" alt="${product.name}" class="img-fluid rounded-3" style="aspect-ratio: 1; object-fit: cover;">
                             </div>
                             <div class="col-8">
                                 <div class="card-body py-0 pe-0">
@@ -169,6 +158,7 @@ let products = [];
 
 async function loadProducts() {
     try {
+        const basePath = window.location.pathname.includes('/pages/') ? '../' : './';
         const response = await fetch(basePath + 'data/products.json');
         if (!response.ok) throw new Error('Failed to load products.json');
         products = await response.json();
@@ -218,7 +208,7 @@ function renderShopProducts(productsToRender) {
     productGrid.innerHTML = productsToRender.map(product => `
         <div class="col-6 col-sm-6 col-md-4 col-xl-3">
             <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden shop-product-card" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
-                <img src="${resolveImagePath(product.image)}" alt="${product.name}" class="card-img-top" style="aspect-ratio: 1; object-fit: cover;">
+                <img src="${product.image}" alt="${product.name}" class="card-img-top" style="aspect-ratio: 1; object-fit: cover;">
                 <div class="card-body p-3 d-flex flex-column">
                     <p class="font-mono text-secondary small text-uppercase mb-1" style="font-size:9px;">${product.brand}</p>
                     <h4 class="fs-6 mb-1 flex-grow-1" style="font-size: 14px !important; font-weight: 600;">${product.name}</h4>
@@ -227,23 +217,6 @@ function renderShopProducts(productsToRender) {
             </article>
         </div>
     `).join('');
-}
-
-function updateFilterCounts() {
-    const categoryCheckboxes = document.querySelectorAll('.filter-category');
-    const brandCheckboxes = document.querySelectorAll('.filter-brand');
-
-    categoryCheckboxes.forEach(checkbox => {
-        const count = products.filter(p => p.category === checkbox.value).length;
-        const countSpan = checkbox.closest('.filter-option').querySelector('.filter-count');
-        if (countSpan) countSpan.textContent = `(${count})`;
-    });
-
-    brandCheckboxes.forEach(checkbox => {
-        const count = products.filter(p => p.brand === checkbox.value).length;
-        const countSpan = checkbox.closest('.filter-option').querySelector('.filter-count');
-        if (countSpan) countSpan.textContent = `(${count})`;
-    });
 }
 
 function openProductModal(productId) {
@@ -258,8 +231,8 @@ function openProductModal(productId) {
             <button class="btn btn-light position-absolute rounded-circle p-0 d-flex align-items-center justify-content-center shadow" onclick="closeProductModal()" style="top: 24px; right: 24px; width: 44px; height: 44px; z-index: 10;">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
             </button>
-            <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-4 p-md-5">
-                <img src="${resolveImagePath(product.image)}" alt="${product.name}" class="img-fluid rounded-4 shadow-sm" style="width: 100%; max-width: 450px; aspect-ratio: 1; object-fit: cover;">
+            <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-4">
+                <img src="${product.image}" alt="${product.name}" class="img-fluid rounded-4 shadow-sm" style="max-width: 300px;">
             </div>
             <div class="col-md-7 p-4 p-md-5">
                 <p class="font-mono small text-uppercase text-secondary mb-2">${product.brand}</p>
@@ -406,7 +379,7 @@ function renderCart() {
 
     content.innerHTML = cart.map(item => `
         <div class="d-flex gap-3 py-3 px-4 border-bottom">
-            <img src="${resolveImagePath(item.image)}" alt="${item.name}" class="rounded-3 object-fit-cover" style="width: 80px; height: 80px; background: #f8f9fa;">
+            <img src="${item.image}" alt="${item.name}" class="rounded-3 object-fit-cover" style="width: 80px; height: 80px; background: #f8f9fa;">
             <div class="d-flex flex-column justify-content-between flex-grow-1">
                 <div>
                     <h6 class="mb-0 fs-6">${item.name}</h6>
@@ -444,29 +417,6 @@ function checkout() {
     saveCart();
     closeCart();
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            submitBtn.innerHTML = 'Sending...';
-            submitBtn.disabled = true;
-            setTimeout(() => {
-                contactForm.innerHTML = `
-                    <div class="text-center py-5">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:64px;height:64px;color:var(--fa-accent);margin-bottom:1rem;">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
-                        <h4>Message Sent!</h4>
-                        <p class="text-secondary small">Thank you for reaching out. We'll get back to you within 24 hours.</p>
-                    </div>
-                `;
-            }, 1000);
-        });
-    }
-});
 
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
