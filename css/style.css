@@ -50,6 +50,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 25px rgba(255, 77, 109, 0.3); color: white; background: var(--fa-accent); }
 .btn-outline { padding: 0.75rem 1.5rem; background: transparent; color: var(--fa-text); border: 1px solid var(--fa-text); border-radius: 999px; font-size: 12px; font-family: 'Space Mono', monospace; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
 .btn-outline:hover { background: var(--fa-text); color: white; }
+.filter-category, .filter-brand {cursor: pointer;}
 
 /* Sections */
 .hero { min-height: 100vh; padding: 6rem 0 4rem; display: flex; align-items: center;}
@@ -58,7 +59,8 @@ h1, h2, h3, h4, h5, h6 {
 .contact-section { background: var(--fa-bg-secondary); padding: 5rem 0; }
 
 /* Product Cards */
-.product-card:hover, .shop-product-card:hover { transform: translateY(-6px) !important; box-shadow: 0 20px 50px rgba(0,0,0,0.1) !important; }
+.product-card, .shop-product-card {transition: all 0.3s ease-in-out;}
+.product-card:hover, .shop-product-card:hover { transform: translateY(-6px) !important; box-shadow: 0 20px 50px rgba(0,0,0,0.1) !important; cursor: pointer; transition: all 0.3s ease-in-out; }
 .product-tag { display: inline-block; padding: 0.35rem 0.7rem; background: var(--fa-accent); color: white; border-radius: 999px; font-family: 'Space Mono', monospace; font-size: 9px; text-transform: uppercase; margin-bottom: 0.75rem; }
 
 /* Face Map Specific */
