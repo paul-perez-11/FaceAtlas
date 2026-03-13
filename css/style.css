@@ -2,7 +2,7 @@
    FaceAtlas - Refactored Main Stylesheet (Bootstrap Override)
    ======================================== */
 :root {
-    --fa-bg-primary: #F6F6F2;
+    --fa-bg-primary: #f8f9fa;
     --fa-bg-secondary: #E9F0F3;
     --fa-accent: #FF4D6D;
     --fa-accent-blue: #4AA3C1;
