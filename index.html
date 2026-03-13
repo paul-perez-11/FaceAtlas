@@ -76,37 +76,63 @@
 
         <section class="face-map-section" id="face-map">
             <div class="container">
-                <header class="section-header">
+                <header class="section-header text-center mb-5">
                     <h2>Skincare Face Map</h2>
                     <p>Click on different areas of the face to learn about common skin concerns and issues prone in each zone.</p>
                 </header>
-                <div class="row g-5">
-                    <div class="col-lg-6 d-flex justify-content-center">
-                        <div class="face-image-container w-100" style="max-width: 400px;">
-                            <img src="img/face_map.jpg" alt="Face map for skin analysis" id="faceImage" class="img-fluid w-100">
-                            <svg class="face-zones-svg" viewBox="0 0 864 1184" preserveAspectRatio="xMidYMid meet">
-                                <g id="zonesGroup" transform="translate(-90, 160) scale(1.2, 1.2)"><path class="face-zone" data-zone="forehead" d="M 280 130 Q 432 100 584 130 Q 620 180 584 220 Q 432 210 280 220 Q 244 180 280 130 Z"></path></g>
-                                <g id="zonesGroup" transform="translate(20, 230) scale(0.93, 0.93)"><ellipse class="face-zone" data-zone="under-eyes" cx="330" cy="330" rx="75" ry="30"></ellipse></g>
-                                <g id="zonesGroup" transform="translate(40, 230) scale(0.93, 0.93)"><ellipse class="face-zone" data-zone="under-eyes" cx="534" cy="330" rx="75" ry="30"></ellipse></g>
-                                <g id="zonesGroup" transform="translate(30, 210) scale(0.93, 0.93)"><path class="face-zone" data-zone="nose" d="M 400 250 Q 432 240 464 250 Q 475 320 485 390 Q 475 460 432 480 Q 389 460 379 390 Q 389 320 400 250 Z"></path></g>
-                                <g id="zonesGroup" transform="translate(130, 340) scale(0.70, 0.70)"><path class="face-zone" data-zone="left-cheek" d="M 200 300 Q 280 280 340 320 Q 360 400 350 480 Q 280 520 180 480 Q 140 400 160 340 Q 180 310 200 300 Z"></path></g>
-                                <g id="zonesGroup" transform="translate(125, 230) scale(0.70, 0.70)"><path class="face-zone" data-zone="right-cheek" d="M 585 430 Q 655 440 700 490 Q 720 560 690 630 Q 640 675 570 650 Q 525 600 525 520 Q 535 455 585 430 Z"></path></g>
-                                <g id="zonesGroup" transform="translate(30, 90) scale(0.93, 0.93)"><path class="face-zone" data-zone="chin" d="M 350 520 Q 432 500 514 520 Q 580 580 600 680 Q 560 780 432 820 Q 304 780 264 680 Q 284 580 350 520 Z"></path></g>
-                            </svg>
+                
+                <div class="row g-4 g-lg-5 align-items-start">
+                    
+                    <div class="col-12 col-md-6 d-flex justify-content-center">
+                        <div class="face-image-container w-100" style="max-width: 400px; position: relative;">
+                            <img src="img/face_map.jpg" alt="Face map for skin analysis" id="faceImage" class="img-fluid w-100" usemap="#image-map">
+                            
+                            <map name="image-map" id="faceMap">
+                                <area alt="Left Cheek" data-zone="left-cheek" coords="314,626,77" shape="circle" href="#">
+                                <area alt="Right Cheek" data-zone="right-cheek" coords="559,627,82" shape="circle" href="#">
+                                <area alt="Forehead" data-zone="forehead" coords="265,291,605,429" shape="rect" href="#">
+                                <area alt="Nose" data-zone="nose" coords="390,442,474,645" shape="rect" href="#">
+                                <area alt="Under Eye Left" data-zone="under-eyes" coords="385,448,272,537" shape="rect" href="#">
+                                <area alt="Under Eye Right" data-zone="under-eyes" coords="478,440,597,537" shape="rect" href="#">
+                                <area alt="Chin" data-zone="chin" coords="598,704,563,715,532,707,510,698,492,682,480,665,475,650,461,650,438,650,412,650,396,650,393,663,383,672,377,680,365,689,355,696,346,703,335,703,320,705,297,706,282,701,271,701,274,718,282,728,291,738,297,746,304,756,311,764,322,772,333,781,349,794,370,805,391,809,403,815,421,815,441,814,456,814,475,811,494,804,522,790,547,770,569,749" shape="poly" href="#">
+                            </map>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="info-panel" id="infoPanel">
-                            <div class="default-message">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                <h3>Click on a facial area</h3>
-                                <p>Select any zone on the face to see common skin issues and care tips for that area.</p>
+
+                    <div class="col-12 col-md-6">
+                        <div class="info-panel-wrapper p-4 bg-white rounded-4 shadow-sm h-100" id="infoPanelContainer">
+                            
+                            <div id="defaultMessage" class="text-center p-5 d-flex flex-column align-items-center justify-content-center h-100">
+                                <svg class="mb-3 text-secondary" style="width: 64px; height: 64px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                                </svg>
+                                <h3 class="fs-4">Click on a facial area</h3>
+                                <p class="text-secondary small">Select any zone on the face to see common skin issues and care tips for that area.</p>
                             </div>
+                            
+                            <div id="dynamicContent" class="d-none"></div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </section>
+        
+        
+        <!-- <div class="col-lg-6 d-flex justify-content-center">
+            <div class="face-image-container w-100" style="max-width: 400px;">
+                <img src="img/face_map.jpg" alt="Face map for skin analysis" id="faceImage" class="img-fluid w-100">
+                <svg class="face-zones-svg" viewBox="0 0 864 1184" preserveAspectRatio="xMidYMid meet">
+                    <g id="zonesGroup" transform="translate(-90, 160) scale(1.2, 1.2)"><path class="face-zone" data-zone="forehead" d="M 280 130 Q 432 100 584 130 Q 620 180 584 220 Q 432 210 280 220 Q 244 180 280 130 Z"></path></g>
+                    <g id="zonesGroup" transform="translate(20, 230) scale(0.93, 0.93)"><ellipse class="face-zone" data-zone="under-eyes" cx="330" cy="330" rx="75" ry="30"></ellipse></g>
+                    <g id="zonesGroup" transform="translate(40, 230) scale(0.93, 0.93)"><ellipse class="face-zone" data-zone="under-eyes" cx="534" cy="330" rx="75" ry="30"></ellipse></g>
+                    <g id="zonesGroup" transform="translate(30, 210) scale(0.93, 0.93)"><path class="face-zone" data-zone="nose" d="M 400 250 Q 432 240 464 250 Q 475 320 485 390 Q 475 460 432 480 Q 389 460 379 390 Q 389 320 400 250 Z"></path></g>
+                    <g id="zonesGroup" transform="translate(130, 340) scale(0.70, 0.70)"><path class="face-zone" data-zone="left-cheek" d="M 200 300 Q 280 280 340 320 Q 360 400 350 480 Q 280 520 180 480 Q 140 400 160 340 Q 180 310 200 300 Z"></path></g>
+                    <g id="zonesGroup" transform="translate(125, 230) scale(0.70, 0.70)"><path class="face-zone" data-zone="right-cheek" d="M 585 430 Q 655 440 700 490 Q 720 560 690 630 Q 640 675 570 650 Q 525 600 525 520 Q 535 455 585 430 Z"></path></g>
+                    <g id="zonesGroup" transform="translate(30, 90) scale(0.93, 0.93)"><path class="face-zone" data-zone="chin" d="M 350 520 Q 432 500 514 520 Q 580 580 600 680 Q 560 780 432 820 Q 304 780 264 680 Q 284 580 350 520 Z"></path></g>
+                </svg>
+            </div>
+        </div> -->
 
         <section class="products-section">
             <div class="container">
