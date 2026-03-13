@@ -2,6 +2,17 @@
 // FaceAtlas - Main JavaScript
 // ========================================
 
+// Dynamically determine the correct path depending on the active directory
+const basePath = window.location.pathname.includes('/pages/') ? '../' : './';
+
+// Helper function to force images to load regardless of HTML file location
+function resolveImagePath(path) {
+    if (!path) return '';
+    // Strip existing '../' or './' from the JSON, then apply the correct basePath
+    const cleanPath = path.replace(/^(\.\.\/|\.\/)/, '');
+    return basePath + cleanPath;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     const navbar = document.getElementById('navbar');
     if (navbar) {
@@ -123,7 +134,7 @@ function openSuggestedProducts(zoneKey) {
                     <div class="card border-0 shadow-sm rounded-4 overflow-hidden" onclick="openProductModal('${product.id}')" style="cursor: pointer; transition: transform 0.2s;">
                         <div class="row g-0 align-items-center p-3">
                             <div class="col-4">
-                                <img src="${product.image}" alt="${product.name}" class="img-fluid rounded-3" style="aspect-ratio: 1; object-fit: cover;">
+                                <img src="${resolveImagePath(product.image)}" alt="${product.name}" class="img-fluid rounded-3" style="aspect-ratio: 1; object-fit: cover;">
                             </div>
                             <div class="col-8">
                                 <div class="card-body py-0 pe-0">
@@ -158,7 +169,6 @@ let products = [];
 
 async function loadProducts() {
     try {
-        const basePath = window.location.pathname.includes('/pages/') ? '../' : './';
         const response = await fetch(basePath + 'data/products.json');
         if (!response.ok) throw new Error('Failed to load products.json');
         products = await response.json();
@@ -208,7 +218,7 @@ function renderShopProducts(productsToRender) {
     productGrid.innerHTML = productsToRender.map(product => `
         <div class="col-6 col-sm-6 col-md-4 col-xl-3">
             <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden shop-product-card" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
-                <img src="${product.image}" alt="${product.name}" class="card-img-top" style="aspect-ratio: 1; object-fit: cover;">
+                <img src="${resolveImagePath(product.image)}" alt="${product.name}" class="card-img-top" style="aspect-ratio: 1; object-fit: cover;">
                 <div class="card-body p-3 d-flex flex-column">
                     <p class="font-mono text-secondary small text-uppercase mb-1" style="font-size:9px;">${product.brand}</p>
                     <h4 class="fs-6 mb-1 flex-grow-1" style="font-size: 14px !important; font-weight: 600;">${product.name}</h4>
@@ -217,6 +227,23 @@ function renderShopProducts(productsToRender) {
             </article>
         </div>
     `).join('');
+}
+
+function updateFilterCounts() {
+    const categoryCheckboxes = document.querySelectorAll('.filter-category');
+    const brandCheckboxes = document.querySelectorAll('.filter-brand');
+
+    categoryCheckboxes.forEach(checkbox => {
+        const count = products.filter(p => p.category === checkbox.value).length;
+        const countSpan = checkbox.closest('.filter-option').querySelector('.filter-count');
+        if (countSpan) countSpan.textContent = `(${count})`;
+    });
+
+    brandCheckboxes.forEach(checkbox => {
+        const count = products.filter(p => p.brand === checkbox.value).length;
+        const countSpan = checkbox.closest('.filter-option').querySelector('.filter-count');
+        if (countSpan) countSpan.textContent = `(${count})`;
+    });
 }
 
 function openProductModal(productId) {
@@ -232,7 +259,7 @@ function openProductModal(productId) {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
             </button>
             <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-4">
-                <img src="${product.image}" alt="${product.name}" class="img-fluid rounded-4 shadow-sm" style="max-width: 300px;">
+                <img src="${resolveImagePath(product.image)}" alt="${product.name}" class="img-fluid rounded-4 shadow-sm" style="max-width: 300px;">
             </div>
             <div class="col-md-7 p-4 p-md-5">
                 <p class="font-mono small text-uppercase text-secondary mb-2">${product.brand}</p>
@@ -379,7 +406,7 @@ function renderCart() {
 
     content.innerHTML = cart.map(item => `
         <div class="d-flex gap-3 py-3 px-4 border-bottom">
-            <img src="${item.image}" alt="${item.name}" class="rounded-3 object-fit-cover" style="width: 80px; height: 80px; background: #f8f9fa;">
+            <img src="${resolveImagePath(item.image)}" alt="${item.name}" class="rounded-3 object-fit-cover" style="width: 80px; height: 80px; background: #f8f9fa;">
             <div class="d-flex flex-column justify-content-between flex-grow-1">
                 <div>
                     <h6 class="mb-0 fs-6">${item.name}</h6>
@@ -440,108 +467,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-//
-document.addEventListener('DOMContentLoaded', function () {
-    const img = document.getElementById('faceImage');
-    const map = document.querySelector('map[name="image-map"]');
-    const faceAreas = document.querySelectorAll('area[data-zone]');
-
-    // 1. Handle the Click Events & Panel Updates
-    if (faceAreas.length) {
-        faceAreas.forEach(area => {
-            area.addEventListener('click', function (e) {
-                e.preventDefault(); 
-                const zoneKey = this.getAttribute('data-zone');
-                if (faceZoneData[zoneKey]) {
-                    updateInfoPanel(faceZoneData[zoneKey], zoneKey);
-                }
-            });
-        });
-    }
-
-    // 2. Responsive Image Map Logic
-    function resizeImageMap() {
-        if (!img || !map || !img.complete) return;
-
-        // Calculate exact scale ratios based on rendered size vs intrinsic size
-        const rect = img.getBoundingClientRect();
-        const ratioX = rect.width / img.naturalWidth;
-        const ratioY = rect.height / img.naturalHeight;
-
-        faceAreas.forEach(area => {
-            // Save original coordinates to prevent degradation on repeated resizing
-            if (!area.dataset.originalCoords) {
-                area.dataset.originalCoords = area.getAttribute('coords');
-            }
-
-            const originalCoords = area.dataset.originalCoords.split(',').map(Number);
-            let scaledCoords = [];
-
-            if (area.getAttribute('shape') === 'circle') {
-                // Circles: scale X, scale Y, and scale Radius (average of X/Y ratios)
-                scaledCoords[0] = Math.round(originalCoords[0] * ratioX);
-                scaledCoords[1] = Math.round(originalCoords[1] * ratioY);
-                scaledCoords[2] = Math.round(originalCoords[2] * ((ratioX + ratioY) / 2));
-            } else {
-                // Polygons and Rectangles: alternating X and Y coordinates
-                for (let i = 0; i < originalCoords.length; i++) {
-                    scaledCoords.push(Math.round(originalCoords[i] * (i % 2 === 0 ? ratioX : ratioY)));
-                }
-            }
-
-            area.setAttribute('coords', scaledCoords.join(','));
-        });
-    }
-
-    // 3. Attach Resize Listeners
-    if (img) {
-        window.addEventListener('resize', resizeImageMap);
-        img.addEventListener('load', resizeImageMap);
-        // Force an initial resize in case image is already cached
-        if (img.complete) resizeImageMap(); 
-    }
-});
-
-function updateInfoPanel(data, zoneKey) {
-    const defaultMessage = document.getElementById('defaultMessage');
-    const dynamicContent = document.getElementById('dynamicContent');
-    
-    if (!defaultMessage || !dynamicContent) return;
-
-    // Hide default state, show dynamic state
-    defaultMessage.classList.add('d-none');
-    dynamicContent.classList.remove('d-none');
-
-    // Inject data into the dynamic container
-    dynamicContent.innerHTML = `
-        <h3 class="fs-4 text-uppercase mb-3">${data.title}</h3>
-        <p class="fw-bold text-uppercase mb-2 small">Common Issues</p>
-        <ul class="list-unstyled mb-4">
-            ${data.issues.map(issue => `
-                <li class="d-flex align-items-center gap-2 mb-2 pb-2 border-bottom">
-                    <span class="d-flex align-items-center justify-content-center bg-danger text-white rounded-circle flex-shrink-0" style="width: 28px; height: 28px; font-size: 12px;">${issue.icon}</span>
-                    <span class="small">${issue.name}</span>
-                </li>
-            `).join('')}
-        </ul>
-        <div class="bg-light p-3 rounded-4 mb-4">
-            <h4 class="font-mono small text-uppercase mb-2 text-secondary" style="font-size: 11px;">Care Tips</h4>
-            <p class="small mb-0">${data.tips}</p>
-        </div>
-        <button class="btn btn-primary w-100 rounded-pill py-3" onclick="openSuggestedProducts('${zoneKey}')">
-            See Suggested Products
-        </button>
-    `;
-
-    // Reset animation
-    dynamicContent.style.opacity = '0';
-    dynamicContent.style.transform = 'translateY(10px)';
-    
-    // Trigger fade-in
-    setTimeout(() => {
-        dynamicContent.style.transition = 'all 0.3s ease-in-out';
-        dynamicContent.style.opacity = '1';
-        dynamicContent.style.transform = 'translateY(0)';
-    }, 50);
-}
