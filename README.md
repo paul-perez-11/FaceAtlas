@@ -14,16 +14,15 @@
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
-- [Vision & Mission](#-features)
-- [Features]()
-- [Tech Stack]()
-- [Project Structure]()
-- [Installation]()
-- [Usage]()
-- [Key Pages]()
-- [Development Timeline]()
-- [Team]()
-- [Acknowledgments]()
+- [Vision & Mission](#-vision)
+- [Features](#-features)
+- [Tech Stack](#-tech-Stack)
+- [Project Structure](#-project-structure)
+- [Setup](#-setup)
+- [Usage](#-usage)
+- [Key Pages](#-key-pages)
+- [Team](#-team)
+- [Additional Information](#-course-information)
 
 ---
 
@@ -116,11 +115,6 @@ Face Atlas/
 │  └─ shop.html
 └─ README.md
 ```
-
-### 🚀 Installation
-**Prerequisites**
-* Modern web browser (Chrome, Firefox, Safari, Edge)
-* Code editor (VS Code, Sublime Text, etc.) — optional for development
 
 ### Setup
 ```txt
