@@ -1,159 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ingredients - FaceAtlas</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&family=Space+Mono:wght@400&display=swap"
-        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top bg-light shadow-sm" id="navbar">
-    <div class="container-fluid px-5">
-        <a class="navbar-brand font-mono text-uppercase fs-6" href="index.html">FaceAtlas</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-            <ul class="navbar-nav gap-4 font-mono text-uppercase" style="font-size: 12px; letter-spacing: 0.12em;">
-                <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="pages/shop.html">Shop</a></li>
-                <li class="nav-item"><a class="nav-link" href="pages/about.html">About Us</a></li>
-            </ul>
-        </div>
-        <div class="user-icon rounded-circle bg-dark text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; cursor: pointer;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-        </div>
-    </div>
-</nav>
-
-    <!-- Ingredients Page -->
-    <main class="ingredients-page">
-        <div class="ingredients-hero">
-            <h1>Ingredient Library</h1>
-            <p>Understand what goes on your skin. Science-backed breakdowns of the most effective skincare ingredients.
-            </p>
-
-            <div class="ingredient-search">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="M21 21l-4.35-4.35"></path>
-                </svg>
-                <input type="text" id="ingredientSearch" placeholder="Search ingredients...">
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top px-4 py-3">
+        <div class="container-fluid">
+            <a href="../index.html" class="navbar-brand logo mb-0">FaceAtlas</a>
+            <div class="d-none d-lg-flex nav-links mx-auto">
+                <a href="../index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html">About Us</a>
+            </div>
+            <div class="user-icon ms-auto">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             </div>
         </div>
+    </nav>
 
-        <div class="ingredients-layout">
-            <!-- Category Filters -->
-            <aside class="ingredients-sidebar">
-                <div class="filter-group">
-                    <h3>Category</h3>
-                    <button class="category-btn active" data-category="all">All Ingredients</button>
-                    <button class="category-btn" data-category="exfoliants">Exfoliants</button>
-                    <button class="category-btn" data-category="hydrators">Hydrators</button>
-                    <button class="category-btn" data-category="antioxidants">Antioxidants</button>
-                    <button class="category-btn" data-category="retinoids">Retinoids</button>
-                    <button class="category-btn" data-category="acne-fighting">Acne-Fighting</button>
-                    <button class="category-btn" data-category="soothing">Soothing</button>
-                    <button class="category-btn" data-category="brightening">Brightening</button>
+    <main class="ingredients-page pt-5 mt-5">
+        <div class="container">
+            <div class="ingredients-hero text-center mx-auto mb-5" style="max-width: 700px;">
+                <h1 class="display-5 fw-bold text-uppercase mb-3">Ingredient Library</h1>
+                <p class="text-secondary mb-4">Understand what goes on your skin. Science-backed breakdowns of the most effective skincare ingredients.</p>
+                <div class="ingredient-search position-relative mx-auto" style="max-width: 400px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="position-absolute" style="left: 1rem; top: 50%; transform: translateY(-50%); color: var(--fa-text-secondary);"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+                    <input type="text" id="ingredientSearch" class="form-control rounded-pill ps-5 py-2 border" placeholder="Search ingredients...">
                 </div>
+            </div>
 
-                <div class="ingredient-fact">
-                    <h4>Did you know?</h4>
-                    <p id="ingredientFact">Vitamin C is most effective when stored in dark, airtight containers as it
-                        oxidizes quickly when exposed to light and air.</p>
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <aside class="ingredients-sidebar position-sticky" style="top: 90px;">
+                        <div class="filter-group bg-white p-4 rounded-4 shadow-sm mb-4">
+                            <h3 class="fs-6 font-mono text-uppercase mb-3 pb-2 border-bottom">Category</h3>
+                            <button class="category-btn w-100 text-start border-0 rounded-3 py-2 px-3 mb-2 active bg-light fw-medium" data-category="all">All Ingredients</button>
+                            <button class="category-btn w-100 text-start border-0 rounded-3 py-2 px-3 mb-2 bg-transparent text-secondary" data-category="exfoliants">Exfoliants</button>
+                            <button class="category-btn w-100 text-start border-0 rounded-3 py-2 px-3 mb-2 bg-transparent text-secondary" data-category="hydrators">Hydrators</button>
+                            <button class="category-btn w-100 text-start border-0 rounded-3 py-2 px-3 mb-2 bg-transparent text-secondary" data-category="antioxidants">Antioxidants</button>
+                            <button class="category-btn w-100 text-start border-0 rounded-3 py-2 px-3 mb-2 bg-transparent text-secondary" data-category="retinoids">Retinoids</button>
+                            <button class="category-btn w-100 text-start border-0 rounded-3 py-2 px-3 mb-2 bg-transparent text-secondary" data-category="acne-fighting">Acne-Fighting</button>
+                            <button class="category-btn w-100 text-start border-0 rounded-3 py-2 px-3 mb-2 bg-transparent text-secondary" data-category="soothing">Soothing</button>
+                            <button class="category-btn w-100 text-start border-0 rounded-3 py-2 px-3 mb-2 bg-transparent text-secondary" data-category="brightening">Brightening</button>
+                        </div>
+                        <div class="ingredient-fact p-4 rounded-4 text-white d-none d-lg-block">
+                            <h4 class="font-mono small text-uppercase mb-2 opacity-75">Did you know?</h4>
+                            <p id="ingredientFact" class="mb-0">Vitamin C is most effective when stored in dark, airtight containers as it oxidizes quickly when exposed to light and air.</p>
+                        </div>
+                    </aside>
                 </div>
-            </aside>
-
-            <!-- Ingredients Grid -->
-            <div class="ingredients-grid" id="ingredientsGrid">
-                <!-- Ingredients rendered by JavaScript -->
+                <div class="col-lg-9">
+                    <div class="row g-3" id="ingredientsGrid"></div>
+                </div>
             </div>
         </div>
     </main>
 
-    <!-- Ingredient Detail Modal -->
     <div class="modal-overlay" id="ingredientModalOverlay">
-        <div class="ingredient-modal" id="ingredientModalContent">
-            <!-- Content populated by JavaScript -->
-        </div>
+        <div class="ingredient-modal container bg-white rounded-4" id="ingredientModalContent" style="max-width: 700px;"></div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <span class="font-mono">FaceAtlas</span>
-                <p>Science-backed skincare, made simple. Find your routine, understand your skin.</p>
+    <footer class="bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 footer-brand">
+                    <span class="font-mono d-block mb-3">FaceAtlas</span>
+                    <p class="text-secondary small" style="max-width: 300px;">Science-backed skincare, made simple. Find your routine, understand your skin.</p>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 footer-links">
+                    <h4 class="font-mono small text-uppercase mb-4">Shop</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="shop.html" class="text-secondary text-decoration-none">Products</a></li>
+                        <li class="mb-2"><a href="../index.html#face-map" class="text-secondary text-decoration-none">Face Map</a></li>
+                        <li class="mb-2"><a href="ingredients.html" class="text-secondary text-decoration-none">Ingredients</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 footer-links">
+                    <h4 class="font-mono small text-uppercase mb-4">Learn</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Guides</a></li>
+                        <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2 footer-links">
+                    <h4 class="font-mono small text-uppercase mb-4">Company</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="about.html#team-section" class="text-secondary text-decoration-none">Meet the Team</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-secondary text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="../index.html#contact" class="text-secondary text-decoration-none">Contact Us</a></li>
+                    </ul>
+                </div>
             </div>
-
-            <div class="footer-links">
-                <h4>Shop</h4>
-                <ul>
-                    <li><a href="./shop.html">Products</a></li>
-                    <li><a href="../index.html#face-map">Face Map</a></li>
-                    <li><a href="./ingredients.html">Ingredients</a></li>
-                    <!--<li><a href="shop.html">Routine</a></li>-->
-                </ul>
+            <div class="row mt-5 pt-4 border-top border-secondary align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <div class="social-icons d-flex gap-3 justify-content-center justify-content-md-start">
+                        <a href="#" class="rounded-circle bg-secondary d-flex align-items-center justify-content-center" style="width:40px;height:40px;color:white;text-decoration:none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="text-secondary small mb-0">© 2026 FaceAtlas. All rights reserved.</p>
+                </div>
             </div>
-
-            <div class="footer-links">
-                <h4>Learn</h4>
-                <ul>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Guides</a></li>
-                    <li><a href="#">FAQ</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-links">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#team-section">Meet the Team</a></li>
-                    <li><a href="./about.html">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="social-icons">
-                <a href="#">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                </a>
-                <a href="#">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M23 7l-7 5 7 5V7z"></path>
-                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
-                    </svg>
-                </a>
-                <a href="#">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                </a>
-            </div>
-            <p class="copyright">© 2026 FaceAtlas. All rights reserved.</p>
         </div>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/ingredient.js"></script>
 </body>
-
 </html>

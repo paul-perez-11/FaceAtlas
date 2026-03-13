@@ -9,7 +9,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     if (ingredientsGrid) {
         try {
-            const response = await fetch('../data/ingredients.json');
+            // Dynamic path based on whether we are in /pages/ or root
+            const basePath = window.location.pathname.includes('/pages/') ? '../' : './';
+            const response = await fetch(basePath + 'data/ingredients.json');
+            
+            if (!response.ok) throw new Error('Failed to load ingredients.json');
             const data = await response.json();
             
             ingredients = data.ingredients;
@@ -22,8 +26,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         } catch (error) {
             console.error('Error loading ingredients:', error);
             ingredientsGrid.innerHTML = `
-                <div style="grid-column: 1 / -1; text-align: center; padding: 4rem;">
-                    <p style="color: var(--fa-text-secondary);">Error loading ingredients. Please refresh the page.</p>
+                <div class="col-12 text-center p-5">
+                    <p class="text-secondary">Error loading ingredients. Please refresh the page.</p>
                 </div>
             `;
         }
@@ -32,51 +36,57 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 function renderIngredients(ingredientsToRender) {
     const grid = document.getElementById('ingredientsGrid');
+    if(!grid) return;
     
     if (ingredientsToRender.length === 0) {
         grid.innerHTML = `
-            <div style="grid-column: 1 / -1; text-align: center; padding: 4rem;">
-                <p style="color: var(--fa-text-secondary);">No ingredients found matching your search.</p>
+            <div class="col-12 text-center p-5">
+                <p class="text-secondary">No ingredients found matching your search.</p>
             </div>
         `;
         return;
     }
     
     grid.innerHTML = ingredientsToRender.map(ing => `
-        <div class="ingredient-card" onclick="openIngredientModal('${ing.id}')" style="--ing-color: ${ing.color}">
-            <div class="ingredient-icon" style="background: ${ing.color}20; color: ${ing.color}">
-                <span>${ing.icon}</span>
-            </div>
-            <div class="ingredient-info">
-                <span class="ingredient-category">${formatCategory(ing.category)}</span>
-                <h3>${ing.name}</h3>
-                <p>${ing.shortDesc}</p>
-                <div class="ingredient-meta">
-                    <span class="ingredient-aka">Also known as: ${ing.aka.split(',')[0]}</span>
+        <div class="col-md-6 col-xl-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 ingredient-card" onclick="openIngredientModal('${ing.id}')" style="cursor:pointer; transition:transform 0.3s, box-shadow 0.3s; --ing-color: ${ing.color}; border: 2px solid transparent;">
+                <div class="card-body p-4 d-flex align-items-start gap-3">
+                    <div class="rounded-4 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 56px; height: 56px; background: ${ing.color}20; color: ${ing.color}; font-family: 'Space Mono', monospace; font-weight: 700;">
+                        <span>${ing.icon}</span>
+                    </div>
+                    <div class="flex-grow-1">
+                        <span class="font-mono small text-uppercase mb-1 d-block" style="color: var(--fa-accent); font-size: 10px;">${formatCategory(ing.category)}</span>
+                        <h3 class="fs-5 mb-1">${ing.name}</h3>
+                        <p class="text-secondary small mb-2 lh-sm">${ing.shortDesc}</p>
+                        <div class="small text-secondary opacity-75" style="font-size: 11px;">
+                            Also known as: ${ing.aka.split(',')[0]}
+                        </div>
+                    </div>
+                    <div class="align-self-center text-secondary opacity-50 ingredient-arrow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
                 </div>
-            </div>
-            <div class="ingredient-arrow">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
             </div>
         </div>
     `).join('');
 }
 
 function formatCategory(category) {
-    return category.split('-').map(word => 
-        word.charAt(0).toUpperCase() + word.slice(1)
-    ).join(' ');
+    return category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
 
 function setupCategoryFilters() {
     const buttons = document.querySelectorAll('.category-btn');
-    
     buttons.forEach(btn => {
         btn.addEventListener('click', function() {
-            buttons.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
+            buttons.forEach(b => {
+                b.classList.remove('active', 'bg-light', 'fw-medium');
+                b.classList.add('bg-transparent', 'text-secondary');
+            });
+            this.classList.remove('bg-transparent', 'text-secondary');
+            this.classList.add('active', 'bg-light', 'fw-medium');
             
             const category = this.dataset.category;
             filterIngredients(category);
@@ -95,10 +105,12 @@ function filterIngredients(category) {
 
 function setupSearch() {
     const searchInput = document.getElementById('ingredientSearch');
+    if(!searchInput) return;
     
     searchInput.addEventListener('input', function() {
         const query = this.value.toLowerCase();
-        const activeCategory = document.querySelector('.category-btn.active').dataset.category;
+        const activeBtn = document.querySelector('.category-btn.active');
+        const activeCategory = activeBtn ? activeBtn.dataset.category : 'all';
         
         let filtered = ingredients;
         
@@ -143,79 +155,78 @@ function openIngredientModal(ingredientId) {
     const modalContent = document.getElementById('ingredientModalContent');
     
     modalContent.innerHTML = `
-        <button class="close-modal" onclick="closeIngredientModal()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M18 6L6 18M6 6l12 12"/>
-            </svg>
+        <button class="btn btn-light position-absolute rounded-circle p-2 d-flex align-items-center justify-content-center" onclick="closeIngredientModal()" style="top: 15px; right: 15px; width: 40px; height: 40px; z-index: 10;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
         
-        <div class="ingredient-modal-header" style="background: ${ing.color}10;">
-            <div class="ingredient-modal-icon" style="background: ${ing.color}; color: white;">
-                <span>${ing.icon}</span>
-            </div>
-            <div class="ingredient-modal-title">
-                <span class="modal-category">${formatCategory(ing.category)}</span>
-                <h2>${ing.name}</h2>
-                <p class="modal-aka">Also known as: ${ing.aka}</p>
+        <div class="p-4 p-md-5 rounded-top-4" style="background: ${ing.color}10;">
+            <div class="d-flex align-items-center gap-4">
+                <div class="rounded-4 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 80px; height: 80px; background: ${ing.color}; color: white; font-family: 'Space Mono', monospace; font-size: 24px; font-weight: 700;">
+                    <span>${ing.icon}</span>
+                </div>
+                <div>
+                    <span class="font-mono small text-uppercase mb-1 d-block opacity-75" style="font-size: 11px;">${formatCategory(ing.category)}</span>
+                    <h2 class="fs-3 fw-bold mb-1">${ing.name}</h2>
+                    <p class="small opacity-75 mb-0">Also known as: ${ing.aka}</p>
+                </div>
             </div>
         </div>
         
-        <div class="ingredient-modal-body">
-            <p class="modal-description">${ing.description}</p>
+        <div class="p-4 p-md-5">
+            <p class="text-secondary mb-4 lh-lg">${ing.description}</p>
             
-            <div class="modal-section">
-                <h4>Key Benefits</h4>
-                <ul class="benefits-list">
-                    ${ing.benefits.map(b => `<li><span style="color: ${ing.color}">•</span> ${b}</li>`).join('')}
-                </ul>
-            </div>
-            
-            <div class="modal-grid">
-                <div class="modal-info-box">
-                    <h5>Best For</h5>
-                    <div class="tag-list">
-                        ${ing.bestFor.map(type => `<span class="info-tag">${type}</span>`).join('')}
-                    </div>
-                </div>
-                
-                <div class="modal-info-box">
-                    <h5>Works Well With</h5>
-                    <div class="tag-list">
-                        ${ing.worksWellWith.map(item => `<span class="info-tag compatible">${item}</span>`).join('')}
-                    </div>
-                </div>
-                
-                <div class="modal-info-box warning">
-                    <h5>Avoid Mixing With</h5>
-                    <div class="tag-list">
-                        ${ing.avoidMixing.map(item => `<span class="info-tag avoid">${item}</span>`).join('')}
-                    </div>
-                </div>
-                
-                <div class="modal-info-box">
-                    <h5>Usage Guidelines</h5>
-                    <p><strong>Concentration:</strong> ${ing.concentration}</p>
-                    <p><strong>pH Range:</strong> ${ing.phRange}</p>
-                    <p><strong>When to use:</strong> ${ing.usage}</p>
+            <div class="mb-4">
+                <h4 class="font-mono small text-uppercase mb-3">Key Benefits</h4>
+                <div class="row g-2">
+                    ${ing.benefits.map(b => `<div class="col-sm-6 d-flex align-items-start gap-2"><span style="color: ${ing.color}">•</span><span class="small">${b}</span></div>`).join('')}
                 </div>
             </div>
             
-            <div class="modal-section">
-                <h4>Found In</h4>
-                <div class="product-type-list">
-                    ${ing.products.map(type => `
-                        <span class="product-type-tag">
-                            ${type.charAt(0).toUpperCase() + type.slice(1)}s
-                        </span>
-                    `).join('')}
+            <div class="row g-3 mb-4">
+                <div class="col-sm-6">
+                    <div class="bg-light p-3 rounded-4 h-100">
+                        <h5 class="font-mono small text-uppercase text-secondary mb-2" style="font-size:10px;">Best For</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            ${ing.bestFor.map(type => `<span class="badge bg-white text-dark border fw-normal py-1 px-2">${type}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="bg-light p-3 rounded-4 h-100">
+                        <h5 class="font-mono small text-uppercase text-secondary mb-2" style="font-size:10px;">Works Well With</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            ${ing.worksWellWith.map(item => `<span class="badge fw-normal py-1 px-2" style="background:#e8f5e9; color:#2e7d32;">${item}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="p-3 rounded-4 h-100" style="background: #fff5f5;">
+                        <h5 class="font-mono small text-uppercase text-secondary mb-2" style="font-size:10px;">Avoid Mixing With</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            ${ing.avoidMixing.map(item => `<span class="badge fw-normal py-1 px-2" style="background:#ffebee; color:#c62828;">${item}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="bg-light p-3 rounded-4 h-100">
+                        <h5 class="font-mono small text-uppercase text-secondary mb-2" style="font-size:10px;">Usage Guidelines</h5>
+                        <p class="small mb-1"><strong>Concentration:</strong> ${ing.concentration}</p>
+                        <p class="small mb-1"><strong>pH Range:</strong> ${ing.phRange}</p>
+                        <p class="small mb-0"><strong>When:</strong> ${ing.usage}</p>
+                    </div>
                 </div>
             </div>
             
-            <a href="shop.html" class="btn-primary" style="margin-top: 1.5rem; width: 100%; justify-content: center;">
+            <div class="mb-4">
+                <h4 class="font-mono small text-uppercase mb-3">Found In</h4>
+                <div class="d-flex flex-wrap gap-2">
+                    ${ing.products.map(type => `<span class="badge bg-light text-dark fw-normal py-2 px-3 border">${type.charAt(0).toUpperCase() + type.slice(1)}s</span>`).join('')}
+                </div>
+            </div>
+            
+            <a href="shop.html" class="btn btn-primary w-100 rounded-pill py-3 d-flex align-items-center justify-content-center gap-2">
                 Find Products With ${ing.name}
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
         </div>
     `;
@@ -226,26 +237,21 @@ function openIngredientModal(ingredientId) {
 
 function closeIngredientModal() {
     const overlay = document.getElementById('ingredientModalOverlay');
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
+    if(overlay) {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 }
 
-// Close modal on overlay click
 document.addEventListener('DOMContentLoaded', function() {
     const modalOverlay = document.getElementById('ingredientModalOverlay');
-    
     if (modalOverlay) {
         modalOverlay.addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeIngredientModal();
-            }
+            if (e.target === this) closeIngredientModal();
         });
     }
 });
 
-// Close on escape key
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeIngredientModal();
-    }
+    if (e.key === 'Escape') closeIngredientModal();
 });
