@@ -11,18 +11,25 @@
 </head>
 <body>
     <nav id="navbar" class="navbar navbar-expand-lg fixed-top px-4 py-3">
-        <div class="container-fluid position-relative d-flex justify-content-between align-items-center">
+        <div class="container-fluid position-relative">
             <a href="../index.html" class="navbar-brand logo mb-0" style="letter-spacing: 2px;">FACEATLAS</a>
-            <div class="d-none d-lg-flex nav-links position-absolute top-50 start-50 translate-middle">
-                <a href="../index.html" class="text-decoration-none text-secondary mx-3">HOME</a>
-                <a href="shop.html" class="text-decoration-none text-secondary mx-3">SHOP</a>
-                <a href="about.html" class="text-decoration-none text-secondary mx-3">ABOUT US</a>
-            </div>
-            <div class="d-flex align-items-center ms-auto">
+            
+            <div class="d-flex align-items-center gap-2 order-lg-3 ms-auto">
                 <button class="cart-icon-btn position-relative bg-transparent border-0 d-flex align-items-center justify-content-center" id="cartIconBtn" onclick="openCart()" style="width: 44px; height: 44px;">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z" /><circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" /><path d="M6 6L5 3H2" /></svg>
                     <span class="cart-badge position-absolute bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" id="cartBadge" style="top:0px; right:0px; width:20px; height:20px; font-size:11px;">0</span>
                 </button>
+                <button class="navbar-toggler border-0 shadow-none px-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse center-nav-lg order-lg-2" id="mainNav">
+                <div class="nav-links d-flex flex-column flex-lg-row align-items-center gap-4 gap-lg-0 mt-3 mt-lg-0 bg-white bg-lg-transparent p-4 p-lg-0 rounded-4 shadow-sm shadow-lg-none">
+                    <a href="../index.html" class="text-decoration-none text-secondary mx-3">HOME</a>
+                    <a href="shop.html" class="text-decoration-none text-secondary mx-3">SHOP</a>
+                    <a href="about.html" class="text-decoration-none text-secondary mx-3">ABOUT US</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -40,7 +47,10 @@
 
             <div class="row g-4">
                 <div class="col-lg-3">
-                    <aside class="ingredients-sidebar position-sticky" style="top: 90px;">
+                    <button class="btn btn-outline-dark d-lg-none w-100 mb-3 font-mono text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#ingredientFilters" aria-expanded="false" aria-controls="ingredientFilters">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg> Categories
+                    </button>
+                    <aside class="ingredients-sidebar position-sticky collapse d-lg-block" id="ingredientFilters" style="top: 90px;">
                         <section class="filter-group bg-white p-4 rounded-4 shadow-sm mb-4">
                             <h3 class="fs-6 font-mono text-uppercase mb-3 pb-2 border-bottom">Category</h3>
                             <button class="category-btn w-100 text-start border-0 rounded-3 py-2 px-3 mb-2 active bg-light fw-medium" data-category="all">All Ingredients</button>
