@@ -106,3 +106,18 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Form Focus */
 .form-control:focus, .form-select:focus { border-color: var(--fa-accent); box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.1); }
+
+/* Hamburger Menu Animation */
+.hamburger-svg .top-line {
+    transform-origin: 12px 6px;
+    transition: transform 0.3s ease-in-out;
+}
+.hamburger-svg .middle-line {transition: opacity 0.125s ease-in-out;}
+.hamburger-svg .bottom-line {
+    transform-origin: 12px 18px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar-toggler[aria-expanded="true"] .hamburger-svg .top-line {transform: translateY(6px) rotate(135deg);}
+.navbar-toggler[aria-expanded="true"] .hamburger-svg .middle-line {opacity: 0;}
+.navbar-toggler[aria-expanded="true"] .hamburger-svg .bottom-line {transform: translateY(-6px) rotate(-135deg);}
