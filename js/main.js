@@ -120,7 +120,7 @@ function openSuggestedProducts(zoneKey) {
             <p class="text-secondary mb-4 text-center">Curated products to address common concerns in this area:</p>
             <div class="d-flex flex-column gap-4">
                 ${suggestedProducts.map(product => `
-                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden" onclick="openProductModal('${product.id}')" style="cursor: pointer; transition: transform 0.2s;">
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden" onclick="openProductModalHome('${product.id}', 'product_${product.id}.jpg')" style="cursor: pointer; transition: transform 0.2s;">
                         <div class="row g-0 align-items-center p-3">
                             <div class="col-4">
                                 <img src="img/product_${product.id}.jpg" alt="${product.name}" class="img-fluid rounded-3" style="aspect-ratio: 1; object-fit: cover;">
