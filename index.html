@@ -67,37 +67,52 @@
                     <img src="img/face_map.jpg" alt="Face map for skin analysis" id="faceImage">
                     
                     <!-- SVG Overlay - viewBox matches original image dimensions -->
-                    <svg class="face-zones-svg" viewBox="0 0 864 1184" preserveAspectRatio="xMidYMid slice">
+                    <svg class="face-zones-svg" viewBox="0 0 864 1184" preserveAspectRatio="xMidYMid meet">
+                        <g id="zonesGroup" transform="translate(-90, 160) scale(1.2, 1.2)">
                         <!-- Forehead Zone -->
                         <path class="face-zone" data-zone="forehead"
                             d="M 280 130 Q 432 100 584 130 Q 620 180 584 220 Q 432 210 280 220 Q 244 180 280 130 Z">
                         </path>
+                        </g>
 
+                        <g id="zonesGroup" transform="translate(20, 230) scale(0.93, 0.93)">
                         <!-- Left Under Eye -->
                         <ellipse class="face-zone" data-zone="under-eyes" cx="330" cy="330" rx="75" ry="30"></ellipse>
-                        
+                        </g>
+
+                        <g id="zonesGroup" transform="translate(40, 230) scale(0.93, 0.93)">
                         <!-- Right Under Eye -->
                         <ellipse class="face-zone" data-zone="under-eyes" cx="534" cy="330" rx="75" ry="30"></ellipse>
+                        </g>
 
+                        <g id="zonesGroup" transform="translate(30, 210) scale(0.93, 0.93)">
                         <!-- Nose/T-Zone -->
                         <path class="face-zone" data-zone="nose"
                             d="M 400 250 Q 432 240 464 250 Q 475 320 485 390 Q 475 460 432 480 Q 389 460 379 390 Q 389 320 400 250 Z">
                         </path>
+                        </g>
 
+                        <g id="zonesGroup" transform="translate(130, 340) scale(0.70, 0.70)">
                         <!-- Left Cheek -->
                         <path class="face-zone" data-zone="left-cheek"
                             d="M 200 300 Q 280 280 340 320 Q 360 400 350 480 Q 280 520 180 480 Q 140 400 160 340 Q 180 310 200 300 Z">
                         </path>
+                        </g>
 
+                        <g id="zonesGroup" transform="translate(125, 230) scale(0.70, 0.70)">
                         <!-- Right Cheek -->
                         <path class="face-zone" data-zone="right-cheek"
-                            d="M 664 300 Q 584 280 524 320 Q 504 400 514 480 Q 584 520 684 480 Q 724 400 704 340 Q 684 310 664 300 Z">
+                            d="M 585 430 Q 655 440 700 490 Q 720 560 690 630 Q 640 675 570 650 Q 525 600 525 520 Q 535 455 585 430 Z">
                         </path>
+                        </g>
 
+                        <g id="zonesGroup" transform="translate(30, 90) scale(0.93, 0.93)">
                         <!-- Chin/Jawline -->
                         <path class="face-zone" data-zone="chin"
                             d="M 350 520 Q 432 500 514 520 Q 580 580 600 680 Q 560 780 432 820 Q 304 780 264 680 Q 284 580 350 520 Z">
                         </path>
+                        </g>
+
                     </svg>
                 </div>
             </div>
