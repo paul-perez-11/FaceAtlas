@@ -219,23 +219,6 @@ function renderShopProducts(productsToRender) {
     `).join('');
 }
 
-function updateFilterCounts() {
-    const categoryCheckboxes = document.querySelectorAll('.filter-category');
-    const brandCheckboxes = document.querySelectorAll('.filter-brand');
-
-    categoryCheckboxes.forEach(checkbox => {
-        const count = products.filter(p => p.category === checkbox.value).length;
-        const countSpan = checkbox.closest('.filter-option').querySelector('.filter-count');
-        if (countSpan) countSpan.textContent = `(${count})`;
-    });
-
-    brandCheckboxes.forEach(checkbox => {
-        const count = products.filter(p => p.brand === checkbox.value).length;
-        const countSpan = checkbox.closest('.filter-option').querySelector('.filter-count');
-        if (countSpan) countSpan.textContent = `(${count})`;
-    });
-}
-
 function openProductModal(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
@@ -245,15 +228,15 @@ function openProductModal(productId) {
 
     modalContent.innerHTML = `
         <div class="row g-0">
-            <button class="btn btn-light position-absolute rounded-circle p-2 d-flex align-items-center justify-content-center" onclick="closeProductModal()" style="top: 15px; right: 15px; width: 40px; height: 40px; z-index: 10;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            <button class="btn btn-light position-absolute rounded-circle p-0 d-flex align-items-center justify-content-center shadow" onclick="closeProductModal()" style="top: 24px; right: 24px; width: 44px; height: 44px; z-index: 10;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
             </button>
             <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-4">
                 <img src="${product.image}" alt="${product.name}" class="img-fluid rounded-4 shadow-sm" style="max-width: 300px;">
             </div>
             <div class="col-md-7 p-4 p-md-5">
                 <p class="font-mono small text-uppercase text-secondary mb-2">${product.brand}</p>
-                <h2 class="fs-3 fw-bold mb-3">${product.name}</h2>
+                <h2 class="fs-3 fw-bold mb-3 pe-5">${product.name}</h2>
                 <p class="fs-4 fw-bold text-danger mb-4">PHP ${product.price.toFixed(2)}</p>
                 <p class="text-secondary mb-4">${product.fullDesc}</p>
                 

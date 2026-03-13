@@ -155,12 +155,12 @@ function openIngredientModal(ingredientId) {
     const modalContent = document.getElementById('ingredientModalContent');
     
     modalContent.innerHTML = `
-        <button class="btn btn-light position-absolute rounded-circle p-2 d-flex align-items-center justify-content-center" onclick="closeIngredientModal()" style="top: 15px; right: 15px; width: 40px; height: 40px; z-index: 10;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        <button class="btn btn-light position-absolute rounded-circle p-0 d-flex align-items-center justify-content-center shadow" onclick="closeIngredientModal()" style="top: 24px; right: 24px; width: 44px; height: 44px; z-index: 10;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
         
         <div class="p-4 p-md-5 rounded-top-4" style="background: ${ing.color}10;">
-            <div class="d-flex align-items-center gap-4">
+            <div class="d-flex align-items-center gap-4 pe-5">
                 <div class="rounded-4 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 80px; height: 80px; background: ${ing.color}; color: white; font-family: 'Space Mono', monospace; font-size: 24px; font-weight: 700;">
                     <span>${ing.icon}</span>
                 </div>
