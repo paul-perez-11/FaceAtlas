@@ -48,22 +48,22 @@ function renderIngredients(ingredientsToRender) {
     }
     
     grid.innerHTML = ingredientsToRender.map(ing => `
-        <div class="col-md-6 col-xl-4">
+        <div class="col-12 col-md-6 col-xl-4">
             <article class="card h-100 border-0 shadow-sm rounded-4 ingredient-card" onclick="openIngredientModal('${ing.id}')" style="cursor:pointer; transition:transform 0.3s, box-shadow 0.3s; --ing-color: ${ing.color}; border: 2px solid transparent;">
-                <div class="card-body p-4 d-flex align-items-start gap-3">
-                    <div class="rounded-4 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 56px; height: 56px; background: ${ing.color}20; color: ${ing.color}; font-family: 'Space Mono', monospace; font-weight: 700;">
+                <div class="card-body p-3 p-md-4 d-flex align-items-start gap-3">
+                    <div class="rounded-4 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px; background: ${ing.color}20; color: ${ing.color}; font-family: 'Space Mono', monospace; font-weight: 700; font-size: 20px;">
                         <span>${ing.icon}</span>
                     </div>
                     <div class="flex-grow-1">
                         <span class="font-mono small text-uppercase mb-1 d-block" style="color: var(--fa-accent); font-size: 10px;">${formatCategory(ing.category)}</span>
-                        <h3 class="fs-5 mb-1">${ing.name}</h3>
-                        <p class="text-secondary small mb-2 lh-sm">${ing.shortDesc}</p>
-                        <div class="small text-secondary opacity-75" style="font-size: 11px;">
+                        <h3 class="fs-6 fs-md-5 mb-1">${ing.name}</h3>
+                        <p class="text-secondary small mb-1 lh-sm">${ing.shortDesc}</p>
+                        <div class="text-secondary opacity-75" style="font-size: 10px;">
                             Also known as: ${ing.aka.split(',')[0]}
                         </div>
                     </div>
-                    <div class="align-self-center text-secondary opacity-50 ingredient-arrow">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <div class="align-self-center text-secondary opacity-50 ingredient-arrow ms-n2">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </div>
