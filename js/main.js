@@ -1,7 +1,3 @@
-// ========================================
-// FaceAtlas - Main JavaScript
-// ========================================
-
 document.addEventListener('DOMContentLoaded', function () {
     const navbar = document.getElementById('navbar');
     if (navbar) {

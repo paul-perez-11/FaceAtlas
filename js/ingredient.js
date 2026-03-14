@@ -1,9 +1,6 @@
 let ingredients = [];
 let facts = [];
 
-// ========================================
-// Initialize Ingredients Page
-// ========================================
 document.addEventListener('DOMContentLoaded', async function() {
     const ingredientsGrid = document.getElementById('ingredientsGrid');
     
