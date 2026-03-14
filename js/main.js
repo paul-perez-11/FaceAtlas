@@ -161,7 +161,6 @@ async function loadProducts() {
         const shopGrid = document.getElementById('shopProductsGrid');
         if (shopGrid) {
             renderShopProducts(products);
-            updateFilterCounts();
         }
     } catch (error) {
         console.error('Error loading products:', error);
